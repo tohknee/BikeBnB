@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tohknee/API-project.git"
+    "url": "git+https://github.com/tohknee/BikeBnB.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tohknee/API-project/issues"
+    "url": "https://github.com/tohknee/BikeBnB/issues"
   },
-  "homepage": "https://github.com/tohknee/API-project#readme",
+  "homepage": "https://github.com/tohknee/BikeBnB#readme",
   "description": ""
 }
