@@ -1,7 +1,11 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom"
 
 
 const SpotForm=({spot, formType})=>{
+    const dispatch=useDispatch()
+    const history=useHistory()
     const[country,setCountry]=useState('')
     const[address,setAddress]=useState('')
     const[city,setCity]=useState('')
@@ -11,6 +15,12 @@ const SpotForm=({spot, formType})=>{
     const[price,setPrice]=useState('')
     const[previewImageUrl,setPreviewImageUrl]=useState('')
     const[imageUrl,setImageUrl]=useState('')
+
+    const handleSubmit = e =>{
+        e.preventDefault();
+        newSpot = {...spot, country, address,city,state,description,spotName,price,previewImageUrl,imageUrl}
+        dispatch(get)
+    }
     return (
         <form>
             <h2>{formType}</h2>

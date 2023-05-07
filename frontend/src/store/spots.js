@@ -56,12 +56,22 @@ export const getAllSpotsThunk =()=>async (dispatch)=>{
     if(response.ok){
     const data = await response.json();
     dispatch(getAllSpots(data))
-    return response;
+    return data.Spots;
     }
 }
 
+export const getSpotThunk=(spotId)=> async(dispatch)=>{
+    const response = await csrfFetch(`/api/spots/${spotId}`);
+    if(response.ok){
+        const data=await response.json();
+        dispatch(getSpot(data))
+        return data;
+    }
+}
 //state object
 const initialState={}
+
+initi
 
 //reducer
 //4. add a case to the case reducer for each action
@@ -69,9 +79,18 @@ const spotsReducer = (state = initialState,action )=>{
    switch(action.type){
  case GET_ALL_SPOTS:{
     const newState= {};
-    console.log(action,'action')
-    action.spots.Spots.forEach(spot=>(newState[spot.id]=spot))
+    action.spots.forEach(spot=>(newState[spot.id]=spot))
     return newState;
+ }
+ case GET_SPOT:{
+    return {...state,[action.spot.id]:action.spot}
+ }
+ case ADD_SPOT:{
+    const newState={...state};
+    newState[action.spot.id]=action.spot;
+    return newState
+
+
  }
  default:
     return state
