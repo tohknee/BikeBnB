@@ -6,7 +6,7 @@ import { getSpotThunk } from "../../store/spots"
 
 const SpotShow=()=>{
     const dispatch=useDispatch()
-    const {spotId}= useParams
+    const {spotId}= useParams()
     const spot = useSelector(state=>state.spots[spotId])
     console.log(spot,"ssadasdaad")
     useEffect(()=>{
