@@ -56,10 +56,19 @@ export const getAllSpotsThunk =()=>async (dispatch)=>{
     if(response.ok){
     const data = await response.json();
     dispatch(getAllSpots(data))
-    return response;
+    console.log("labe",data.Spots)
+    return data.Spots;
     }
 }
 
+export const getSpotThunk=(spotId)=> async(dispatch)=>{
+    const response = await csrfFetch(`/api/spots/${spotId}`);
+    if(response.ok){
+        const data=await response.json();
+        dispatch(getSpot(data))
+        return data;
+    }
+}
 //state object
 const initialState={}
 
@@ -69,9 +78,19 @@ const spotsReducer = (state = initialState,action )=>{
    switch(action.type){
  case GET_ALL_SPOTS:{
     const newState= {};
-    console.log(action,'action')
+    console.log('new',action)
     action.spots.Spots.forEach(spot=>(newState[spot.id]=spot))
     return newState;
+ }
+ case GET_SPOT:{
+    return {...state,...action.payload}//[action.spot.id]:action.spot
+ }
+ case ADD_SPOT:{
+    const newState={...state};
+    newState[action.spot.id]=action.spot;
+    return newState
+
+
  }
  default:
     return state
