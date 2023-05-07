@@ -56,6 +56,7 @@ export const getAllSpotsThunk =()=>async (dispatch)=>{
     if(response.ok){
     const data = await response.json();
     dispatch(getAllSpots(data))
+    console.log("labe",data.Spots)
     return data.Spots;
     }
 }
@@ -71,19 +72,18 @@ export const getSpotThunk=(spotId)=> async(dispatch)=>{
 //state object
 const initialState={}
 
-initi
-
 //reducer
 //4. add a case to the case reducer for each action
 const spotsReducer = (state = initialState,action )=>{
    switch(action.type){
  case GET_ALL_SPOTS:{
     const newState= {};
-    action.spots.forEach(spot=>(newState[spot.id]=spot))
+    console.log('new',action)
+    action.spots.Spots.forEach(spot=>(newState[spot.id]=spot))
     return newState;
  }
  case GET_SPOT:{
-    return {...state,[action.spot.id]:action.spot}
+    return {...state,...action.payload}//[action.spot.id]:action.spot
  }
  case ADD_SPOT:{
     const newState={...state};

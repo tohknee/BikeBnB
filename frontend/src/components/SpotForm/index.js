@@ -1,25 +1,37 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
+import { getSpotThunk } from "../../store/spots"
+import createSpot from "../CreateSpotForm"
 
 
 const SpotForm=({spot, formType})=>{
     const dispatch=useDispatch()
     const history=useHistory()
-    const[country,setCountry]=useState('')
-    const[address,setAddress]=useState('')
-    const[city,setCity]=useState('')
-    const[state,setState]=useState('')
-    const[description,setDescription]=useState('')
-    const[spotName,setSpotName]=useState('')
-    const[price,setPrice]=useState('')
-    const[previewImageUrl,setPreviewImageUrl]=useState('')
-    const[imageUrl,setImageUrl]=useState('')
+    const[country,setCountry]=useState(spot?.country)
+    const[address,setAddress]=useState(spot?.address)
+    const[city,setCity]=useState(spot?.city)
+    const[state,setState]=useState(spot?.state)
+    const[description,setDescription]=useState(spot?.description)
+    const[spotName,setSpotName]=useState(spot?.spotName)
+    const[price,setPrice]=useState(spot?.price)
+    const[previewImageUrl,setPreviewImageUrl]=useState(spot?.previewImageUrl)
+    const[imageUrl,setImageUrl]=useState(spot?.imageUrl)
+    const [lat,setLat]=useState(spot?.lat)
+    const [lng,setLng]=useState(spot?.lng)
 
+    //do later
     const handleSubmit = e =>{
         e.preventDefault();
-        newSpot = {...spot, country, address,city,state,description,spotName,price,previewImageUrl,imageUrl}
-        dispatch(get)
+        spot = {...spot, country, address,city,state,description,spotName,price,previewImageUrl,imageUrl}
+        dispatch(getSpotThunk(spot))
+
+        if(formType==="Create Spot"){
+            dispatch(createSpot(spot))
+        }
+        // if(formType===)
+
+        history.push(`/`)
     }
     return (
         <form>
@@ -61,6 +73,25 @@ const SpotForm=({spot, formType})=>{
                     placeholder="State"
                     onChange={e=>setState(e.target.value)}></input>
                 </label>
+            </div>
+            <div>
+                <label>
+                    Latitude
+                    <input
+                    type="text"
+                    value={lat}
+                    placeholder="Latitude"
+                    onChange={e=>setLat(e.target.value)}></input>
+                </label>,
+                <label>
+                    Longitude
+                    <input
+                    type="text"
+                    value={lng}
+                    placeholder="Longitude"
+                    onChange={e=>setLng(e.target.value)}></input>
+                </label>
+
             </div>
             <h2>Describe your place to Guests</h2>
             <p>Mention the best features of your space any special amenities</p>
