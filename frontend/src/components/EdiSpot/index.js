@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import {getSpotThunk} from '../../store/spots'
+import SpotForm from "../SpotForm"
 
 const EditSpot = ()=>{
     const dispatch=useDispatch()
@@ -16,6 +17,7 @@ const EditSpot = ()=>{
     return (
         <>
         <p>EDIT SPOT</p>
+        <SpotForm spot={spot} formType="Edit Spot"></SpotForm>
         </>
     )
 }

@@ -56,7 +56,7 @@ export const getAllSpotsThunk =()=>async (dispatch)=>{
     if(response.ok){
     const data = await response.json();
     dispatch(getAllSpots(data))
-    console.log("labe",data.Spots)
+    // console.log("labe",data.Spots)
     return data.Spots;
     }
 }
@@ -69,6 +69,16 @@ export const getSpotThunk=(spotId)=> async(dispatch)=>{
         return data;
     }
 }
+
+export const editSpotThunk=(spotId)=> async(dispatch)=>{
+    const response =await csrfFetch(`/api/spots/${spotId}/edit`);
+    if(response.ok){
+        const data=await response.json();
+        dispatch(getSpot(data)) 
+        return data;
+    }
+}
+
 //state object
 const initialState={}
 
@@ -90,8 +100,11 @@ const spotsReducer = (state = initialState,action )=>{
     const newState={...state};
     newState[action.spot.id]=action.spot;
     return newState
-
-
+ }
+ case EDIT_SPOT:{
+    const newState={...state};
+    newState[action.spot.id]=action.spot
+    return newState
  }
  default:
     return state
