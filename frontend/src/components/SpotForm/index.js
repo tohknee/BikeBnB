@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { getSpotThunk } from "../../store/spots"
 import createSpot from "../CreateSpotForm"
+import EditSpot from "../EdiSpot"
 
 
 const SpotForm=({spot, formType})=>{
@@ -28,13 +29,17 @@ const SpotForm=({spot, formType})=>{
 
         if(formType==="Create Spot"){
             dispatch(createSpot(spot))
+            history.push('/')
         }
-        // if(formType===)
+        if(formType==="Edit Spot"){
+            dispatch(EditSpot(spot))
+            history.push('/')
+        }
 
         history.push(`/`)
     }
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <h2>{formType}</h2>
             <h3>Wheres your place located</h3>
             <p>Guests will only get your exact adress once</p>

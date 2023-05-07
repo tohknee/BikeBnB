@@ -24,28 +24,28 @@ const getAllSpots = (spots)=> {
 const getSpot =(spot)=>{
     return{
         type:GET_SPOT,
-        payload:spot,
+        spot,
     }
 }
 
 const addSpot=(spot)=>{
     return{
         type:ADD_SPOT,
-        payload:spot
+        spot
     }
 }
 
 const editSpot=(spot)=>{
     return{
         type:EDIT_SPOT,
-        payload:spot,
+        spot,
     }
 }
 
 const deleteSpot=(spotId)=> {
     return{
         type:DELETE_SPOT,
-        payload:spotId
+        spotId
     }
 }
 
@@ -72,6 +72,7 @@ export const getSpotThunk=(spotId)=> async(dispatch)=>{
 //state object
 const initialState={}
 
+
 //reducer
 //4. add a case to the case reducer for each action
 const spotsReducer = (state = initialState,action )=>{
@@ -83,7 +84,7 @@ const spotsReducer = (state = initialState,action )=>{
     return newState;
  }
  case GET_SPOT:{
-    return {...state,...action.payload}//[action.spot.id]:action.spot
+    return {...state,[action.spot.id]:action.spot}
  }
  case ADD_SPOT:{
     const newState={...state};

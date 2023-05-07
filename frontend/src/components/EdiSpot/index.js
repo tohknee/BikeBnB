@@ -8,11 +8,11 @@ const EditSpot = ()=>{
     const {spotId} = useParams()
     
     const spot = useSelector(state=>state.spots[spotId])
-    console.log(spot)//undefined
+    console.log('spoot',spot)//undefined
     useEffect(()=>{
         dispatch(getSpotThunk(spotId))
     },[dispatch,spotId])
-    
+    if(!spot) return null;
     return (
         <>
         <p>EDIT SPOT</p>
