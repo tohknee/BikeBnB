@@ -3,10 +3,19 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAllSpotsThunk } from "../../store/spots"
 import GetAllSpots from "../GetSpots"
 
-const GetCurrentUserSpots =()=>{
+const GetCurrentUserSpots =({spots})=>{
     const dispatch=useDispatch()
-    const currentUserSpots=useSelector(state=>state.spots.allSpots)
-    console.log(currentUserSpots,"sdadadadsada")
+    // const currentUserId=useSelector(state=>state.auth.user)
+    // const spotsObj=useSelector(state=>state.spots.allSpots)
+    // const spotsArray=Object.values(spotsObj)
+
+    useEffect(()=>{
+        dispatch(getAllSpotsThunk());
+    },[dispatch])
+
+    // const currentUserSpots=spotsArray.filter(spot=>spot.ownerId===currentUserId.id)
+
+    // console.log(currentUserSpots,"sdadadadsada")
     // console.log(state.spots.allSpots)
     // const spots= useSelector(state=>Object.values(state.spots).filter(spot=>spot.ownerId===currentUser.id))
     // console.log(spots,"ASDASDASDASDASDASDS")
@@ -17,7 +26,8 @@ const GetCurrentUserSpots =()=>{
     return(
         <>
         <p>current user spot</p>
-        <GetAllSpots></GetAllSpots>
+        <h2>{spots.id}</h2>
+        {/* <GetAllSpots></GetAllSpots> */}
         </>
     )
 }

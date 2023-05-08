@@ -8,14 +8,18 @@ const SpotShow=()=>{
     const dispatch=useDispatch()
     const {spotId}= useParams()
     const spot = useSelector(state=>state.spots[spotId])
-    console.log(spot,"ssadasdaad")
+    console.log("jhfjhggh",spot,"ssadasdaad")
     useEffect(()=>{
         dispatch(getSpotThunk(spotId))
     },[dispatch,spotId])
     // console.log(spot,'asdasdasdasd') spot is undefined. fix this
+    if(!spot){
+        return null
+    }
     return (
         <>
-
+    <h2>{spot.name}</h2>
+    <p>{spot.address},{spot.city}{spot.avgStarRating}{spot.country}{spot.price}</p>
         <p>SINGLEE SPOT</p>
         </>
     )

@@ -23,13 +23,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Switch>
       
-
+            {/* make sur epaths are least specific to most specific */}
       <Route exact path='/' component={GetAllSpots}></Route>
-      {/* <Route exact path='/spots/new' component={SpotForm}></Route> */}
       <Route exact path='/spots/new' component={createSpot}></Route>
       <Route exact path='/spots/:spotId/edit' component={EditSpot}></Route>
       <Route exact path='/spots/:spotId' component={SpotShow}></Route>
-      {/* <Route exact path='/spots/user/:userId' component={GetCurrentUserSpot}></Route> */}
+      {/* <Route exact path='/spots/current' component={GetCurrentUserSpot}></Route> */}
         </Switch>}
       
     

@@ -2,7 +2,8 @@
 //step 2. add regular action creator
 //step 3. create constant to use in action creator
 //step 4. add a case in the reducer for each case
-//step 5. Work on compoenent
+//step 5. Work on component
+//step 6. render component into app
 
 import reactRouterDom from "react-router-dom";
 import { csrfFetch } from "./csrf";
