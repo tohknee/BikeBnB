@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { getSpotThunk } from "../../store/spots"
-import createSpot from "../CreateSpotForm"
-import EditSpot from "../EdiSpot"
+import { addSpotThunk, editSpotThunk} from "../../store/spots"
+import CreateSpotForm from "../CreateSpotForm"
+import EditSpotForm from "../EditSpotForm"
 
 
 const SpotForm=({spot, formType})=>{
@@ -14,9 +14,9 @@ const SpotForm=({spot, formType})=>{
     const[city,setCity]=useState(spot?.city)
     const[state,setState]=useState(spot?.state)
     const[description,setDescription]=useState(spot?.description)
-    const[spotName,setSpotName]=useState(spot?.spotName)
+    const[name,setSpotName]=useState(spot?.name)
     const[price,setPrice]=useState(spot?.price)
-    const[previewImageUrl,setPreviewImageUrl]=useState(spot?.previewImageUrl)
+    const[previewImage,setPreviewImageUrl]=useState(spot?.previewImageUrl)
     const[imageUrl,setImageUrl]=useState(spot?.imageUrl)
     const [lat,setLat]=useState(spot?.lat)
     const [lng,setLng]=useState(spot?.lng)
@@ -24,19 +24,29 @@ const SpotForm=({spot, formType})=>{
     //do later
     const handleSubmit = e =>{
         e.preventDefault();
-        spot = {...spot, country, address,city,state,description,spotName,price,previewImageUrl,imageUrl}
-        dispatch(getSpotThunk(spot))
+
+         spot = { ...spot, 
+            country, 
+            address,
+            city,
+            state,
+            description,
+            name,
+            price,
+            previewImage,
+            imageUrl,
+            lat,
+            lng
+            }
 
         if(formType==="Create Spot"){
-            dispatch(createSpot(spot))
+            dispatch(addSpotThunk(spot))
             history.push('/')
         }
         if(formType==="Edit Spot"){
-            dispatch(EditSpot(spot))
+            dispatch(editSpotThunk(spot))
             history.push('/')
         }
-
-        history.push(`/`)
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -105,11 +115,11 @@ const SpotForm=({spot, formType})=>{
             value={description}
             placeholder="please write atleast 30 character"
             onChange={e=>setDescription(e.target.value)}></textarea>
-            <h2>Create a title for your spot</h2>
+            <h2>{formType} Title for your spot</h2>
             <p>catch Guests attention with a spot title that hihglights</p>
             <input 
             type="text"
-            value={spotName}
+            value={name}
             placeholder="name of spot"
             onChange={e=>setSpotName(e.target.value)}>
             </input>
@@ -124,7 +134,7 @@ const SpotForm=({spot, formType})=>{
             <p>Submit a link to atleast one photo to publish your spot</p>
             <input
             type="text"
-            value={previewImageUrl}
+            value={previewImage}
             placeholder="Preview Image url"
             onChange={e=>setPreviewImageUrl(e.target.value)}
             ></input>
@@ -146,6 +156,7 @@ const SpotForm=({spot, formType})=>{
             placeholder="Image url"
             onChange={e=>setImageUrl(e.target.value)}>
             </input>
+            <input type="submit" value={formType}></input>
         </form>
     )
 }

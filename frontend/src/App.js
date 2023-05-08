@@ -8,7 +8,7 @@ import SpotForm from "./components/SpotForm";
 import SpotShow from "./components/SpotShow";
 import createSpot from "./components/CreateSpotForm";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
-import EditSpot from "./components/EdiSpot";
+import EditSpot from "./components/EditSpotForm";
 import GetCurrentUserSpot from "./components/GetCurrentUserSpot";
 
 function App() {
@@ -21,16 +21,17 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Switch></Switch>}
-      <Switch>
+      {isLoaded && <Switch>
+      
 
       <Route exact path='/' component={GetAllSpots}></Route>
-      <Route exact path='/spots/new' component={SpotForm}></Route>
-      <Route exact path='/spots/:spotId' component={SpotShow}></Route>
-      <Route exact path='/spots/addSpot' component={createSpot}></Route>
+      {/* <Route exact path='/spots/new' component={SpotForm}></Route> */}
+      <Route exact path='/spots/new' component={createSpot}></Route>
       <Route exact path='/spots/:spotId/edit' component={EditSpot}></Route>
+      <Route exact path='/spots/:spotId' component={SpotShow}></Route>
       {/* <Route exact path='/spots/user/:userId' component={GetCurrentUserSpot}></Route> */}
-      </Switch>
+        </Switch>}
+      
     
     </>
   );

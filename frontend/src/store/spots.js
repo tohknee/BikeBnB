@@ -10,7 +10,7 @@ import { csrfFetch } from "./csrf";
 //3. create constant to use in action ccreator
 const GET_ALL_SPOTS='spots/getAllSpots'
 const GET_SPOT='spots/getSpot/:spotId'
-const ADD_SPOT='spots/addSpot'
+const ADD_SPOT='spots/new'
 const EDIT_SPOT='spots/editSpot/:spotId'
 const DELETE_SPOT='spots/deleteSpot/:spotId'
 const GET_USER_SPOT='/spots/current'
@@ -86,19 +86,34 @@ export const editSpotThunk=(spotId, editedSpot)=> async(dispatch)=>{
         body:JSON.stringify(editedSpot),
         headers: {
             'Content-Type':'application/json'
-        }
+        },
     })
-
     if(response.ok){
         const data=await response.json();
         dispatch(getSpot(data)) 
         return data;
     }
 }
+
+export const addSpotThunk =(spot)=> async(dispatch)=>{
+    const response = await csrfFetch('/api/spots',{
+        method:'POST',
+        body:JSON.stringify(spot),
+        headers: {
+            'Content-Type':'application/json'
+        },
+    })
+    if(response.ok){
+        const data=await response.json();
+        dispatch(addSpot(data))
+        return data
+    }
+}
 export const getCurrentUserSpotThunk=()=>async(dispatch)=>{
     const response = await csrfFetch('/api/spots/current');
     if(response.ok){
         const data=await response.json();
+        console.log('this is working')
         dispatch(getCurrentUserSpots(data))
         return data;
     }

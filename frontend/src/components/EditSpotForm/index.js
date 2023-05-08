@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import {getSpotThunk} from '../../store/spots'
 import SpotForm from "../SpotForm"
 
-const EditSpot = ()=>{
+const EditSpotForm = ()=>{
     const dispatch=useDispatch()
     const {spotId} = useParams()
     
@@ -21,4 +21,4 @@ const EditSpot = ()=>{
         </>
     )
 }
-export default EditSpot
+export default EditSpotForm
