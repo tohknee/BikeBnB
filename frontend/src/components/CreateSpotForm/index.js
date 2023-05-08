@@ -1,10 +1,8 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+
 import SpotForm from "../SpotForm"
 
 
-const createSpot = ()=> {
+const CreateSpot = ()=> {
 
     const spot= {
         country:'',
@@ -12,19 +10,19 @@ const createSpot = ()=> {
         city:'',
         state:'',
         description:'',
-        spotName:'',
+        name:'',
         price:'',
-        previewImageUrl:'',
+        previewImage:'',
         imageUrl:'',
-        lat:'',
-        lng:''
+        // lat:'',
+        // lng:''
     }
+
     return (
         <>
         <SpotForm spot={spot} formType='Create Spot'></SpotForm>
-        
         </>
     )
 }
 
-export default createSpot;
+export default CreateSpot;
