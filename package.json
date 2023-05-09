@@ -5,7 +5,7 @@
   "name": "authenticate-me",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  
   "scripts": {
     "render-postbuild": "npm run build --prefix frontend",
     "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tohknee/API-project.git"
+    "url": "git+https://github.com/tohknee/BikeBnB.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tohknee/API-project/issues"
+    "url": "https://github.com/tohknee/BikeBnB/issues"
   },
-  "homepage": "https://github.com/tohknee/API-project#readme",
+  "homepage": "https://github.com/tohknee/BikeBnB#readme",
   "description": ""
 }
