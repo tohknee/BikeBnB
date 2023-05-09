@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import GetAllSpots from "./components/GetSpots";
+import GetAllSpots from "./components/SpotShow";
 import SpotForm from "./components/SpotForm";
-import SpotShow from "./components/SpotShow";
+import SpotShow from "./components/SpotIndex";
 import createSpot from "./components/CreateSpotForm";
-import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import { Route } from "react-router-dom";
 import EditSpot from "./components/EditSpotForm";
 import GetCurrentUserSpot from "./components/GetCurrentUserSpot";
 

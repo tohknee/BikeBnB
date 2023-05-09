@@ -7,7 +7,7 @@ import SpotForm from "../SpotForm"
 const EditSpotForm = ()=>{
     const dispatch=useDispatch()
     const {spotId} = useParams()
-    const spot = useSelector(state=>state.spots[spotId])
+    const spot = useSelector(state=>state.spots[spotId])//normalized
     console.log('spoot',spot)//{}
     console.log('sdasdad',spotId)
 
@@ -21,7 +21,7 @@ const EditSpotForm = ()=>{
     if(!spot) return null;
     return (
         <>
-        <p>EDIT SPOT</p>
+        <p>EDIT SPOT #{spotId}</p>
         <SpotForm spot={spot} formType="Edit Spot"></SpotForm>
         </>
     )
