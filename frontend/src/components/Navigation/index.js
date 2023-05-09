@@ -21,4 +21,17 @@ function Navigation({ isLoaded }){
     );
   }
 
+  return (
+    <ul>
+      <li>
+        <NavLink exact to="/">
+          Home
+        </NavLink>
+      </li>
+      {isLoaded && sessionLinks}
+    </ul>
+  );
+}
+
+
 export default Navigation;

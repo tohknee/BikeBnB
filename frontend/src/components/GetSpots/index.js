@@ -6,9 +6,6 @@ const GetAllSpots = ()=> {
     const dispatch=useDispatch()
     const spotsObj= useSelector(state=> state.spots.allSpots)//create spots object
     const spotsArray = Object.values(spotsObj) //this is a spots array
-    console.log('label',spotsArray)
-    console.log('spot.name', spotsArray[0].address)
-    console.log(spotsArray,"sdasdasa")
     useEffect(()=>{
         dispatch(getAllSpotsThunk())
     },[dispatch])

@@ -21,11 +21,13 @@ const SpotForm=({spot, formType})=>{
     const [lat,setLat]=useState(spot?.lat)
     const [lng,setLng]=useState(spot?.lng)
 
+     
+
     //do later
-    const handleSubmit = e =>{
+    const handleSubmit= async  e =>{
         e.preventDefault();
 
-         spot = { ...spot, 
+    spot = { ...spot, 
             country, 
             address,
             city,
@@ -38,6 +40,9 @@ const SpotForm=({spot, formType})=>{
             lat,
             lng
             }
+
+
+console.log("spot from spotform===>", spot)
 
         if(formType==="Create Spot"){
             dispatch(addSpotThunk(spot))
