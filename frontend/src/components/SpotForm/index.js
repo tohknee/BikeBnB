@@ -50,7 +50,7 @@ console.log("spot from spotform===>", spot)
         }
         if(formType==="Edit Spot"){
             dispatch(editSpotThunk(spot))
-            history.push('/')
+            history.push('/spots/current')
         }
     }
     return (

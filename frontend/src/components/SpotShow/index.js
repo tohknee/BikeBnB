@@ -1,35 +1,42 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { deleteSpotThunk, getSpotThunk } from "../../store/spots"
+import { getAllSpotsThunk } from "../../store/spots"
+import { Link } from "react-router-dom/cjs/react-router-dom.min"
+import SpotIndexItem from "../SpotIndex"
 
-
-const SpotShow=()=>{
+const SpotIndex = ()=> {
     const dispatch=useDispatch()
-    const {spotId}= useParams()
-    const spot = useSelector(state=>state.spots[spotId])
-    // console.log("jhfjhggh",spot,"ssadasdaad")
+    const spotsObj= useSelector(state=> state.spots.allSpots)//create spots object
+    const spotsArray = Object.values(spotsObj) //this is a spots array
 
+    //
     useEffect(()=>{
-        dispatch(getSpotThunk(spotId))
-    },[dispatch,spotId])
-    
-    // const handleDelete=e=>{
-    //     e.preventDefault();
-    //     dispatch(deleteSpotThunk())
-    // }
-
-    //conditional render until spot is not undefined. initial render is undefined
-    if(!spot){
-        return null
-    }
+        dispatch(getAllSpotsThunk())
+    },[dispatch])
     return (
         <>
-    <h2>{spot.name}</h2>
-    <p>{spot.address},{spot.city}{spot.avgStarRating}{spot.country}{spot.price}</p>
-        <p>SINGLEE SPOT</p>
+        <h1>Spots List</h1>
+        {spotsArray.map(spot=>(
+            <div key={spot.id}>
+                <Link to={`/spots/${spot.id}`}>
+                <h2>{spot.name}</h2>
+                </Link>
+                <img src={spot.previewImage} alt='spot Image'></img>
+                <h3>{spot.city},{spot.state}</h3>
+                <h4>${spot.price} per night</h4>
+                <h5>StarRAting{spot.rating}</h5>
+            
+            </div>
+        ))}
+        {/* <ul>
+        {spotsArray.map(spot=>(
+            <SpotIndexItem
+            spot={spotsArray}
+            key={spotsArray.id}></SpotIndexItem>
+            ))}
+        </ul> */}
+      
         </>
-    )
-}
+    )}
 
-export default SpotShow
+    export default SpotIndex

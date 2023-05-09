@@ -122,16 +122,18 @@ export const getCurrentUserSpotThunk=()=>async(dispatch)=>{
         return data;
     }
 }
-
-export const deleteSpotThunk = (spot) => async(dispatch)=>{
-    const response=await csrfFetch  (`/api/spots/${spot.id}`,{
+//fix delete spot
+export const deleteSpotThunk = (spotId) => async(dispatch)=>{
+    console.log("asdasdasdd",spotId)//spotid is undefined
+    const response=await csrfFetch  (`/api/spots/${spotId}`,{
         method:"DELETE"
     })
     if(response.ok){
-        dispatch(deleteSpot(spot.id))
-    }else{
-        return false;
+        dispatch(deleteSpot(spotId.id))
     }
+    //else{
+    //     return false;
+    // }
 }
 
 
@@ -168,6 +170,12 @@ const spotsReducer = (state = initialState,action )=>{
  }
  case GET_USER_SPOT:{
     return {...state,currentUserSpots:action.spots}
+ }
+ case DELETE_SPOT:{//delete spot not updatign after deleting 
+    const newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}};
+    delete newState.allSpots[action.spotId]
+    delete newState.currentUserSpots[action.spotId]
+    return newState;
  }
  default:
     return state
