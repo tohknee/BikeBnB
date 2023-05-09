@@ -12,10 +12,10 @@ const EditSpotForm = ()=>{
     console.log('sdasdad',spotId)
 
     useEffect(()=>{
-        console.log("spotttt in useEffecy===", spot)
+        // console.log("spotttt in useEffecy===", spot)
 
         dispatch(getSpotThunk(spotId))
-        console.log("spotttt in dispatch===", spot)
+        // console.log("spotttt in dispatch===", spot)
 
     },[dispatch,spotId])
     if(!spot) return null;

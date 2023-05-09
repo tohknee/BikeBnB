@@ -11,7 +11,7 @@ const GetCurrentUserSpots =()=>{
         dispatch(getCurrentUserSpotThunk());
     },[dispatch])
 
-    console.log('uuuuuuuu',spotsObj)
+    // console.log('uuuuuuuu',spotsObj)
     // console.log('current user compoent log', spotsArray)
     if(!spotsObj) return null;
     return(

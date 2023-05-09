@@ -123,6 +123,17 @@ export const getCurrentUserSpotThunk=()=>async(dispatch)=>{
     }
 }
 
+export const deleteSpotThunk = (spot) => async(dispatch)=>{
+    const response=await csrfFetch  (`/api/spots/${spot.id}`,{
+        method:"DELETE"
+    })
+    if(response.ok){
+        dispatch(deleteSpot(spot.id))
+    }else{
+        return false;
+    }
+}
+
 
 //state object
 const initialState={allSpots:{}, currentUserSpots:{}}
