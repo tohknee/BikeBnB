@@ -12,7 +12,9 @@ const SpotShow=()=>{
     useEffect(()=>{
         dispatch(getSpotThunk(spotId))
     },[dispatch,spotId])
-    // console.log(spot,'asdasdasdasd') spot is undefined. fix this
+    
+
+    //conditional render until spot is not undefined. initial render is undefined
     if(!spot){
         return null
     }

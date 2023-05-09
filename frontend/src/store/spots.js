@@ -81,18 +81,21 @@ export const getSpotThunk=(spotId)=> async(dispatch)=>{
     }
 }
 
-export const editSpotThunk=(spotId, editedSpot)=> async(dispatch)=>{
-    const response =await csrfFetch(`/api/spots/${spotId}/edit`,{
+export const editSpotThunk=(spot)=> async(dispatch)=>{
+    const response =await csrfFetch(`/api/spots/${spot.id}`,{
         method: 'PUT',
-        body:JSON.stringify(editedSpot),
+        body:JSON.stringify(spot),
         headers: {
             'Content-Type':'application/json'
         },
     })
     if(response.ok){
         const data=await response.json();
-        dispatch(getSpot(data)) 
+        dispatch(editSpot(data)) 
         return data;
+    } else{
+        const data=await response.json()
+        return data
     }
 }
 
@@ -114,11 +117,12 @@ export const getCurrentUserSpotThunk=()=>async(dispatch)=>{
     const response = await csrfFetch('/api/spots/current');
     if(response.ok){
         const data=await response.json();
-        console.log('this is working')
+        console.log('asdasdassssssssdas',data)
         dispatch(getCurrentUserSpots(data))
         return data;
     }
 }
+
 
 //state object
 const initialState={allSpots:{}, currentUserSpots:{}}
@@ -132,16 +136,13 @@ const spotsReducer = (state = initialState,action )=>{
  case GET_ALL_SPOTS:{
     const newState= {allSpots:{...state.allSpots}, //make copy of oldstate all spots
     currentUserSpots:{...state.currentUserSpots}};//deep clone entire state to prevent loosing currentuserspot
-    // console.log('new',action)
-    // action.spots.Spots.forEach(spot=>(newState[spot.id]=spot))
-    // console.log(action.spots,'action spoi')
-    // console.log()
     action.spots.Spots.forEach(spot => {
         newState.allSpots[spot.id]=spot
     })
     return newState;
  }
  case GET_SPOT:{
+    //spot ojbect(action.spot) is fetched from api then added to state object that matches spots
     return {...state,[action.spot.id]:action.spot}
  }
  case ADD_SPOT:{
@@ -150,12 +151,12 @@ const spotsReducer = (state = initialState,action )=>{
     return newState
  }
  case EDIT_SPOT:{
-    const newState={...state};
-    newState[action.spot.id]=action.spot
+    const newState={...state,allSpots:{...state.allSpots}};//create ne object state clone
+    newState[action.spot.id]=action.spot//update clone with new key value pair of id of fetched spot and value o the spot. add new spot or update
     return newState
  }
  case GET_USER_SPOT:{
-    const newState={}
+    return {...state,currentUserSpots:action.spots}
  }
  default:
     return state

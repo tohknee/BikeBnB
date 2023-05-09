@@ -1,33 +1,29 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllSpotsThunk } from "../../store/spots"
-import GetAllSpots from "../GetSpots"
+import { getCurrentUserSpotThunk } from "../../store/spots"
 
-const GetCurrentUserSpots =({spots})=>{
+const GetCurrentUserSpots =()=>{
     const dispatch=useDispatch()
-    // const currentUserId=useSelector(state=>state.auth.user)
-    // const spotsObj=useSelector(state=>state.spots.allSpots)
-    // const spotsArray=Object.values(spotsObj)
-
+    // const spotsObj=useSelector(state=>state.spots.currentUserSpots)
+    // const spotsArray=Object.values(spotsObj)//array is called 0
+    const spotsObj=useSelector(state=>state.spots.currentUserSpots.Spots)
     useEffect(()=>{
-        dispatch(getAllSpotsThunk());
+        dispatch(getCurrentUserSpotThunk());
     },[dispatch])
 
-    // const currentUserSpots=spotsArray.filter(spot=>spot.ownerId===currentUserId.id)
-
-    // console.log(currentUserSpots,"sdadadadsada")
-    // console.log(state.spots.allSpots)
-    // const spots= useSelector(state=>Object.values(state.spots).filter(spot=>spot.ownerId===currentUser.id))
-    // console.log(spots,"ASDASDASDASDASDASDS")
-    useEffect(()=>{
-        dispatch(getAllSpotsThunk())
-    },[dispatch])
-    
+    console.log('uuuuuuuu',spotsObj)
+    // console.log('current user compoent log', spotsArray)
+    if(!spotsObj) return null;
     return(
         <>
         <p>current user spot</p>
-        <h2>{spots.id}</h2>
-        {/* <GetAllSpots></GetAllSpots> */}
+        {spotsObj.map(spot=>(
+        
+            <div key={spot.id}>
+                <h2>{spot.name}</h2>
+                <div>spots</div>
+            </div>
+        ))}
         </>
     )
 }

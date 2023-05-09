@@ -43,5 +43,5 @@ function Navigation({ isLoaded }) {
     </ul>
   );
 }
-//added comment
+
 export default Navigation;
