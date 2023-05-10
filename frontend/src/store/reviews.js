@@ -55,6 +55,8 @@ export const getUserReviewsThunk=()=> async(dispatch)=>{
         return data
     }
 }
+
+
 export const createReview =(reviewToCreate)=> async (dispatch)=> {
     const response = await csrfFetch(`/api/spots/${reviewToCreate.spotId}/reviews`,{
         method:"POST",

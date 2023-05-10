@@ -18,11 +18,11 @@ const ReviewList = ({spotId})=>{
     },[dispatch,spotId])//the getSpotthunk will retrieve data form api and update store with the new data
 
     // console.log()
-    console.log("checking the arraY", reviewsArray[0])
+    console.log("checking the arraY", reviewsArray)
     return(
         <div>
             {/* currently not mappinng the the reviews in the current spot */}
-            {reviewsArray.map(review=> {
+            {reviewsArray.map(review=> (
             <Fragment key={review.id}>
                 <h2>{review.review}</h2>
                 {console.log("cheeeecking if this work",review.review)}
@@ -30,7 +30,7 @@ const ReviewList = ({spotId})=>{
                 <p>asdsad</p>
             </Fragment>
             
-            })}
+            ))}
             workinbg revuew
         </div>
     )
