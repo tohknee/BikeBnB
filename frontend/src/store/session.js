@@ -16,11 +16,14 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
-//login thunk
+//login thunk redux action creator. takes in user object as the param.
+//then returns another function with the fat arrow that takes dispatch as a parameter
+
 export const login = (user) => async (dispatch) => {
-  const { credential, password } = user;
-  const response = await csrfFetch("/api/session", {
-    method: "POST",
+  const { credential, password } = user;//user object is destructured to extract credential and password
+  const response = await csrfFetch("/api/session", //csrffetch function is called with the url. this function adds the CSRF token to request header
+  {//the post object with body of credential and password jsonified  
+  method: "POST",  
     body: JSON.stringify({
       credential,
       password,
