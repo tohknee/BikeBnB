@@ -115,9 +115,10 @@ export const addSpotThunk =(spot)=> async(dispatch)=>{
 }
 export const getCurrentUserSpotThunk=()=>async(dispatch)=>{
     const response = await csrfFetch('/api/spots/current');
+
     if(response.ok){
         const data=await response.json();
-        // console.log('asdasdassssssssdas',data)
+        console.log('asdasdassssssssdas',data)
         dispatch(getCurrentUserSpots(data))
         return data;
     }

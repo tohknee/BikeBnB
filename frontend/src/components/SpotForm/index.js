@@ -35,8 +35,8 @@ const SpotForm=({spot, formType})=>{
             description,
             name,
             price,
-            previewImage,
-            imageUrl,
+           
+           
             lat,
             lng
             }
@@ -46,11 +46,11 @@ console.log("spot from spotform===>", spot)
 
         if(formType==="Create Spot"){
             dispatch(addSpotThunk(spot))
-            history.push('/')
+            history.push('/')//redirect to spot id
         }
         if(formType==="Edit Spot"){
             dispatch(editSpotThunk(spot))
-            history.push('/spots/current')
+            history.push('/spots/current')// redirect to spot id
         }
     }
     return (
