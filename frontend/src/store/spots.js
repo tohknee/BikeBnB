@@ -117,7 +117,7 @@ export const getCurrentUserSpotThunk=()=>async(dispatch)=>{
     const response = await csrfFetch('/api/spots/current');
     if(response.ok){
         const data=await response.json();
-        console.log('asdasdassssssssdas',data)
+        // console.log('asdasdassssssssdas',data)
         dispatch(getCurrentUserSpots(data))
         return data;
     }
@@ -127,9 +127,11 @@ export const deleteSpotThunk = (spotId) => async(dispatch)=>{
     console.log("asdasdasdd",spotId)//spotid is undefined
     const response=await csrfFetch  (`/api/spots/${spotId}`,{
         method:"DELETE"
+        
     })
     if(response.ok){
         dispatch(deleteSpot(spotId.id))
+        return response// maybe this is why delete isnt working
     }
     //else{
     //     return false;
@@ -171,7 +173,7 @@ const spotsReducer = (state = initialState,action )=>{
  case GET_USER_SPOT:{
     return {...state,currentUserSpots:action.spots}
  }
- case DELETE_SPOT:{//delete spot not updatign after deleting 
+ case DELETE_SPOT:{//delete spot not updatign after deleting . need to fix
     const newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}};
     delete newState.allSpots[action.spotId]
     delete newState.currentUserSpots[action.spotId]
