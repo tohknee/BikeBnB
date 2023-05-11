@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createReviewThunk } from "../../store/reviews"
 
-const ReviewForm =({onSubmit,reviews,formType})=>{
+const ReviewForm =({spotId,reviews,formType})=>{
     const [stars,setStars] = useState(1)
     const [review,setReview]= useState("")
     // const{closeModal} =useModal()
@@ -16,8 +16,9 @@ const ReviewForm =({onSubmit,reviews,formType})=>{
     const handleSubmit=e=>{
         e.preventDefault()
 
+
         if(formType==="Submit Review"){
-            dispatch(createReviewThunk(review))
+            dispatch(createReviewThunk(review,spotId))
             // .then(closeModal)
             //close modal
             // history.push("/") push back to spot id
