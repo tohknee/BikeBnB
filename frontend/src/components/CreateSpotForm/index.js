@@ -1,7 +1,7 @@
 
 import SpotForm from "../SpotForm"
 
-
+//create spot component
 const CreateSpot = ()=> {
 
     const spot= {
