@@ -4,7 +4,7 @@ import { deleteReviewThunk } from "../../store/reviews"
 
 const DeleteReview = ({review})=>{
     const dispatch=useDispatch()
-    console.log(review)
+    console.log('console.loooog ', review)
 
     const handleDelete=e=>{
         e.preventDefault();
