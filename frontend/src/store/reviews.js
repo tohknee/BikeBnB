@@ -6,6 +6,7 @@
 //step 6. render component into app
 
 
+import DeleteReview from "../components/Reviews/DeleteReview"
 import { csrfFetch } from "./csrf"
 
 const ADD_REVIEW='spots/addReview'
@@ -13,6 +14,7 @@ const DELETE_REVIEW='spots/deleteReview'
 const GET_REVIEW='spots/getReview'
 const GET_REVIEWS='spots/getReviews'
 const USER_REVIEWS='spots/userReviews'
+
 //get a review
 const receiveReview = review=>{
     return{
@@ -27,14 +29,13 @@ const getSpotReviews = reviews=>{
         reviews
     }
 }
-const getCurrentUserReviews = reviews=>{
+const deleteReview=review=>{
     return{
-        type:USER_REVIEWS,
-        reviews
+        type:DELETE_REVIEW,
+        review
     }
+
 }
-
-
 //define thunk to make request to backend to fetch reviews
 //then dispatch the getspotreviews action with data recieved from server 
 export const getSpotReviewsThunk = (spotId) => async(dispatch) =>{
@@ -46,16 +47,16 @@ export const getSpotReviewsThunk = (spotId) => async(dispatch) =>{
     }
 }
 
-export const getUserReviewsThunk=()=> async(dispatch)=>{
-    const response= await csrfFetch('/api/reviews/current')
+
+export const deleteReviewThunk=(reviewId)=>async(dispatch)=>{
+    const response= await csrfFetch (`/api/reviews`,{
+        method:"DELETE"
+    })
     if(response.ok){
-        const data = await response.json()
-        console.log("reviewwws", data)
-        dispatch(getCurrentUserReviews(data))
-        return data
+        dispatch(deleteReview(reviewId.id))
+        return response
     }
 }
-
 
 export const createReview =(reviewToCreate)=> async (dispatch)=> {
     const response = await csrfFetch(`/api/spots/${reviewToCreate.spotId}/reviews`,{
