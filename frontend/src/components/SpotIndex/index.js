@@ -37,6 +37,7 @@ const SpotIndexItem=()=>{
     <li>
     <div className="li-contents-flex">
       <Link to={`/spots/${spot.id}`}>Spot #{spot.id}</Link>
+      
       <div className="buttons-container">
       </div>
     </div>

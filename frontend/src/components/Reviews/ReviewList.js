@@ -2,6 +2,7 @@ import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getSpotThunk } from "../../store/spots";
 import { getSpotReviewsThunk } from "../../store/reviews";
+import DeleteReview from "./DeleteReview";
 
 const ReviewList = ({spotId})=>{
     const dispatch=useDispatch();
@@ -19,14 +20,20 @@ const ReviewList = ({spotId})=>{
 
     // console.log()
     console.log("checking the arraY", reviewsArray)
+
+    const matchUser= useSelector(state=>state.session.user)
+    console.log(matchUser)
+
     return(
         <div>
             {/* currently not mappinng the the reviews in the current spot */}
             {reviewsArray.map(review=> (
             <Fragment key={review.id}>
                 <h2>{review.review}</h2>
-                {console.log("cheeeecking if this work",review.review)}
-                
+                {matchUser===review.userId &&(
+                    <DeleteReview review={reviewsArray}></DeleteReview>
+                )}
+                    
                 <p>asdsad</p>
             </Fragment>
             
