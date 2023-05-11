@@ -36,6 +36,12 @@ const deleteReview=review=>{
     }
 
 }
+const createReview=review=>{
+    return{
+        type:ADD_REVIEW,
+        review
+    }
+}
 //define thunk to make request to backend to fetch reviews
 //then dispatch the getspotreviews action with data recieved from server 
 export const getSpotReviewsThunk = (spotId) => async(dispatch) =>{
@@ -58,18 +64,20 @@ export const deleteReviewThunk=(reviewId)=>async(dispatch)=>{
     }
 }
 
-export const createReview =(reviewToCreate)=> async (dispatch)=> {
-    const response = await csrfFetch(`/api/spots/${reviewToCreate.spotId}/reviews`,{
+export const createReviewThunk =(spotId, review)=> async (dispatch)=> {
+    console.log('string review to create',spotId)
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
         },
-        body:JSON.stringify({rating:reviewToCreate.review})
-    });
+        body:JSON.stringify({rating:review.review})
+     
+    });   console.log("this i the review", review)
     const data= await response.json();
     const createdReview = data;
     dispatch(receiveReview)
-    return createReview
+    return createdReview
 }
 //define initial state
 const initialState={
@@ -78,7 +86,7 @@ const initialState={
 
 //review reducer
 const reviewsReducer = (state=initialState, action) => {
-    console.log('asdasda aciton review',action.reviews)
+    // console.log('asdasda aciton review',action.reviews)
     switch(action.type){
         case GET_REVIEWS:{
             // const newState={...state,reviews:{...state.reviews}}
@@ -86,17 +94,21 @@ const reviewsReducer = (state=initialState, action) => {
             // console.log("action keeyinh", action.reviews.Reviews)
             action.reviews.Reviews.forEach(review=>{
                 newState.reviews[review.id]=review
-
             })
-            console.log("is this wokring",newState)
+            // console.log("is this wokring",newState)
           return newState
         }
-        case USER_REVIEWS:{
-            const newState={...state,currentUserReviews:action.reviews}
-            console.log("reducer state",newState)
+        case ADD_REVIEW:{
+            const newState={...state};
+            newState[action.review.id]=action.review
             return newState
 
         }
+        case DELETE_REVIEW:{
+            const newState={...state}
+            delete newState[action.reviewId]
+        }
+
         default:
             return state
 

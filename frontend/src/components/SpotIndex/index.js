@@ -10,8 +10,10 @@ const SpotIndexItem=()=>{
     const dispatch=useDispatch()
     const {spotId}= useParams()
     const spot = useSelector(state=>state.spots[spotId])
+    // const owner= useSelector(state=>state.spots[spotId][0])
  
     console.log("jhfjhggh",spot,"ssa÷dasdaad")
+    // console.log("spot owner ifno",owner)
     
     useEffect(()=>{
         dispatch(getSpotThunk(spotId))
@@ -31,6 +33,7 @@ const SpotIndexItem=()=>{
         <div>SpotImage</div>
     ))} */}
     <div>Spot review</div>
+    
     <ReviewList spotId={spot.id}/>
     
     

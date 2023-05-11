@@ -14,6 +14,8 @@ const SpotIndex = ()=> {
     useEffect(()=>{
         dispatch(getAllSpotsThunk())
     },[dispatch])
+
+    console.log("spots array information", spotsArray)
     return (
         <>
         <h1>Spots List</h1>

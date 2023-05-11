@@ -125,7 +125,7 @@ export const getCurrentUserSpotThunk=()=>async(dispatch)=>{
 }
 //fix delete spot
 export const deleteSpotThunk = (spotId) => async(dispatch)=>{
-    console.log("asdasdasdd",spotId)//spotid is undefined
+    // console.log("asdasdasdd",spotId)
     const response=await csrfFetch  (`/api/spots/${spotId}`,{
         method:"DELETE"
         
@@ -136,7 +136,17 @@ export const deleteSpotThunk = (spotId) => async(dispatch)=>{
     }
 
 }
+//makesure this works
+export const createImageThunk=(spot,image )=> async(dispatch)=>{
+    const response= await csrfFetch(`/api/spots/${spot.id}/images`,{//call thunk into add spot or send image images to  
+        method:"POST",
+        body:JSON.stringify(image),
+        headers:{
+            'Content-Type':'application/json'
+        },
+    })
 
+}
 
 //state object
 const initialState={allSpots:{}, currentUserSpots:{}}
@@ -173,7 +183,10 @@ const spotsReducer = (state = initialState,action )=>{
     return {...state,currentUserSpots:action.spots}
  }
  case DELETE_SPOT:{//delete spot not updatign after deleting . need to fix
-    const newState={...state, allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}};
+    const newState={...state, ...state.allSpots[action.spotId],
+        ...state.currentUserSpots[action.spotId]
+    }
+        //  allSpots:{...state.allSpots},currentUserSpots:{...state.currentUserSpots}};
     delete newState.allSpots[action.spotId]
     delete newState.currentUserSpots[action.spotId]
     return newState;

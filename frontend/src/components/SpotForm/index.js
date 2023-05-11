@@ -20,7 +20,12 @@ const SpotForm=({spot, formType})=>{
     const[imageUrl,setImageUrl]=useState(spot?.imageUrl)
     const [lat,setLat]=useState(spot?.lat)
     const [lng,setLng]=useState(spot?.lng)
-
+    const [url1,setUrl1]=useState('')
+    const [url2,setUrl2]=useState('')
+    const [url3,setUrl3]=useState('')
+    const [url4,setUrl4]=useState('')
+    const [url5,setUrl5]=useState('')
+    
      
 
     //do later
@@ -38,19 +43,28 @@ const SpotForm=({spot, formType})=>{
             previewImage,
             imageUrl,
             lat,
-            lng
+            lng,
+            SpotImages:[
+                {preview:true,url:url1},
+                {preview:false,url:url2},
+                {preview:false,url:url3},
+                {preview:false,url:url4},
+                {preview:false,url:url5}
+            ]
             }
 
 
 console.log("spot from spotform===>", spot)
 
         if(formType==="Create Spot"){
-            dispatch(addSpotThunk(spot))
-            history.push('/')//redirect to spot id
+            const spotData= await dispatch(addSpotThunk(spot))
+            console.log("asdasdsadasd", spotData)
+            // dispatch(addSpotThunk(spot))
+            history.push(`/spots/${spotData.id}`)//redirect to spot id
         }
         if(formType==="Edit Spot"){
-            dispatch(editSpotThunk(spot))
-            history.push('/spots/current')// redirect to edit spot
+            const spotData= await dispatch(editSpotThunk(spot))
+            history.push(`/spots/${spotData.id}`)// redirect to edit spot
         }
     }
     return (
@@ -141,25 +155,25 @@ console.log("spot from spotform===>", spot)
             type="text"
             value={previewImage}
             placeholder="Preview Image url"
-            onChange={e=>setPreviewImageUrl(e.target.value)}
+            onChange={e=>setUrl1(e.target.value)}
             ></input>
             <input
             type="text"
             value={imageUrl}
             placeholder="Image url"
-            onChange={e=>setImageUrl(e.target.value)}>
+            onChange={e=>setUrl2(e.target.value)}>
             </input>
             <input
             type="text"
             value={imageUrl}
             placeholder="Image url"
-            onChange={e=>setImageUrl(e.target.value)}>
+            onChange={e=>setUrl3(e.target.value)}>
             </input>
             <input
             type="text"
             value={imageUrl}
             placeholder="Image url"
-            onChange={e=>setImageUrl(e.target.value)}>
+            onChange={e=>setUrl4(e.target.value)}>
             </input>
             <input type="submit" value={formType}></input>
         </form>

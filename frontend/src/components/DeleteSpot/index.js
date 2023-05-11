@@ -1,13 +1,16 @@
 import { useDispatch } from "react-redux"
-import { deleteSpotThunk } from "../../store/spots";
+import { deleteSpotThunk, getSpotThunk,getCurrentUserSpotThunk } from "../../store/spots";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const DeleteSpot = ({spot})=>{
     const dispatch=useDispatch()
+    const history=useHistory()
     console.log("asdasdsdsssssss",spot)
 
-    const handleDelete=e=>{
+    const handleDelete=async e=>{
         e.preventDefault();
-        dispatch(deleteSpotThunk(spot.id))
+        await dispatch(deleteSpotThunk(spot.id))
+        dispatch(getCurrentUserSpotThunk())
     }
     return (
         <div>
