@@ -16,17 +16,23 @@ const SpotForm=({spot, formType})=>{
     const[description,setDescription]=useState(spot?.description)
     const[name,setSpotName]=useState(spot?.name)
     const[price,setPrice]=useState(spot?.price)
-    const[previewImage,setPreviewImageUrl]=useState(spot?.previewImageUrl)
+    // const[previewImage,setPreviewImageUrl]=useState(spot?.previewImageUrl)
     const[imageUrl,setImageUrl]=useState(spot?.imageUrl)
     const [lat,setLat]=useState(spot?.lat)
     const [lng,setLng]=useState(spot?.lng)
-
+    const [url1,setUrl1]=useState('')
+    const [url2,setUrl2]=useState('')
+    const [url3,setUrl3]=useState('')
+    const [url4,setUrl4]=useState('')
+    const [url5,setUrl5]=useState('')
+    
+    const [errors,setErrors]=useState({})
      
 
     //do later
     const handleSubmit= async  e =>{
         e.preventDefault();
-
+        setErrors({})
     spot = { ...spot, 
             country, 
             address,
@@ -35,30 +41,53 @@ const SpotForm=({spot, formType})=>{
             description,
             name,
             price,
-            previewImage,
             imageUrl,
             lat,
-            lng
+            lng,
+            SpotImages:[
+                {preview:true,
+                    url:url1},
+                {preview:false,
+                    url:url2},
+                {preview:false,
+                    url:url3},
+                {preview:false,
+                    url:url4},
+                {preview:false,
+                    url:url5}
+            ]
             }
 
 
-console.log("spot from spotform===>", spot)
+// console.log("spot from spotform----", spot)
 
         if(formType==="Create Spot"){
-            dispatch(addSpotThunk(spot))
-            history.push('/')//redirect to spot id
+            const spotData= await dispatch(addSpotThunk(spot))
+            // console.log("asdasdsadasd", spotData)
+            // console.log('asdasd=-------',spotData.errors)
+            if(spotData.errors){//check if there is errros.
+                // console.log("asdads-------",spotData.errors)
+                return setErrors(spotData.errors)//populate with errors
+            }
+            // dispatch(addSpotThunk(spot))
+            history.push(`/spots/${spotData.id}`)//redirect to spot id
         }
         if(formType==="Edit Spot"){
-            dispatch(editSpotThunk(spot))
-            history.push('/spots/current')// redirect to edit spot
+            const spotData= await dispatch(editSpotThunk(spot))
+            history.push(`/spots/${spotData.id}`)// redirect to edit spot
+        if(spotData.errors){
+            return setErrors(spotData.errors)
+        }
         }
     }
     return (
         <form onSubmit={handleSubmit}>
             <h2>{formType}</h2>
+            {console.log(errors)}
             <h3>Wheres your place located</h3>
             <p>Guests will only get your exact adress once</p>
-            <label>Country
+               <p className="errors">{errors.country}</p>
+               <label>Country
                 <input
                 type="text"
                 value={country}
@@ -66,6 +95,7 @@ console.log("spot from spotform===>", spot)
                 onChange={e=>setCountry(e.target.value)}
                 ></input>
             </label>
+         
             <label>
                 Street address
                 <input
@@ -75,6 +105,7 @@ console.log("spot from spotform===>", spot)
                 onChange={e=>setAddress(e.target.value)}
                 ></input>
             </label>
+            <div>{errors.address}</div>
             <div>
                 <label>
                     City
@@ -139,27 +170,27 @@ console.log("spot from spotform===>", spot)
             <p>Submit a link to atleast one photo to publish your spot</p>
             <input
             type="text"
-            value={previewImage}
+            value={url1}
             placeholder="Preview Image url"
-            onChange={e=>setPreviewImageUrl(e.target.value)}
+            onChange={e=>setUrl1(e.target.value)}
             ></input>
             <input
             type="text"
-            value={imageUrl}
+            value={url2}
             placeholder="Image url"
-            onChange={e=>setImageUrl(e.target.value)}>
+            onChange={e=>setUrl2(e.target.value)}>
             </input>
             <input
             type="text"
-            value={imageUrl}
+            value={url3}
             placeholder="Image url"
-            onChange={e=>setImageUrl(e.target.value)}>
+            onChange={e=>setUrl3(e.target.value)}>
             </input>
             <input
             type="text"
-            value={imageUrl}
+            value={url4}
             placeholder="Image url"
-            onChange={e=>setImageUrl(e.target.value)}>
+            onChange={e=>setUrl4(e.target.value)}>
             </input>
             <input type="submit" value={formType}></input>
         </form>

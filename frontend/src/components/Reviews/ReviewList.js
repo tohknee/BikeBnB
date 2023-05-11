@@ -29,16 +29,18 @@ const ReviewList = ({spotId})=>{
             {/* currently not mappinng the the reviews in the current spot */}
             {reviewsArray.map(review=> (
             <Fragment key={review.id}>
-                <h2>{review.review}</h2>
+                <h2>Review title:{review.review}</h2>
+                <div>Star rating{review.stars}</div>
+                
+                {/* if user ID matches the review user id then we show the delete button\ */}
                 {matchUser===review.userId &&(
                     <DeleteReview review={reviewsArray}></DeleteReview>
                 )}
                     
-                <p>asdsad</p>
+                
             </Fragment>
             
             ))}
-            workinbg revuew
         </div>
     )
 }

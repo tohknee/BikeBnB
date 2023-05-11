@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllSpotsThunk } from "../../store/spots"
 import { Link } from "react-router-dom/cjs/react-router-dom.min"
-import ReviewList from "../Reviews/ReviewList"
+
 
 
 const SpotIndex = ()=> {
@@ -14,6 +14,8 @@ const SpotIndex = ()=> {
     useEffect(()=>{
         dispatch(getAllSpotsThunk())
     },[dispatch])
+
+    console.log("spots array information", spotsArray)
     return (
         <>
         <h1>Spots List</h1>
