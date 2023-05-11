@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { deleteSpotThunk, getSpotThunk } from "../../store/spots"
 import { Link } from "react-router-dom"
-import ReviewIndexItem from "../Reviews/ReviewItem"
 import ReviewList from "../Reviews/ReviewList"
 
 

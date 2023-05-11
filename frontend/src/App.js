@@ -11,7 +11,7 @@ import { Route } from "react-router-dom";
 import EditSpot from "./components/EditSpotForm";
 import GetCurrentUserSpot from "./components/GetCurrentUserSpot";
 import { getSpotReviewsThunk } from "./store/reviews";
-import GetCurrentUserReviews from "./components/Reviews/GetCurrentUserReview";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function App() {
       {/* <Route exact path='/spots/:spotId' component={getSpotReviewsThunk}></Route> */}
       <Route exact path='/spots/current' component={GetCurrentUserSpot}></Route>
       <Route exact path='/spots/:spotId' component={SpotShow}></Route>
-        <Route exact path='/reviews/current' component={GetCurrentUserReviews}></Route>
+        
         </Switch>}
       
     

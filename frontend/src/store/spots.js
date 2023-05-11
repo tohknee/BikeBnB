@@ -134,9 +134,7 @@ export const deleteSpotThunk = (spotId) => async(dispatch)=>{
         dispatch(deleteSpot(spotId.id))
         return response// maybe this is why delete isnt working
     }
-    //else{
-    //     return false;
-    // }
+
 }
 
 
