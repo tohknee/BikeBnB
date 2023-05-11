@@ -1,18 +1,25 @@
 import { createReview } from "../../store/reviews";
 import ReviewForm from "./ReviewForm";
-
-const CreateReviewForm =()=>{
+import OpenModalButton from "../OpenModalButton";
+const CreateReviewForm =({spotId})=>{
     const review= {
         review:'',
         stars:'',
     };
 
     return (
-        <ReviewForm
+        <button>This is the create review button
+            <OpenModalButton
+            modalComponent={ <ReviewForm
         review={review}
         formType="Submit Review"
+        spotId={spotId}
+        
         // onSubmit={createReview}
-        ></ReviewForm>
+        ></ReviewForm>}>
+            </OpenModalButton>
+        </button>
+        
     )
 }
 export default CreateReviewForm;

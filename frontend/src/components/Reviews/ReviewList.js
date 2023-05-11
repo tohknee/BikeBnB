@@ -32,6 +32,7 @@ const ReviewList = ({spotId})=>{
                 <h2>Review title:{review.review}</h2>
                 <div>Star rating{review.stars}</div>
                 
+                {/* if user ID matches the review user id then we show the delete button\ */}
                 {matchUser===review.userId &&(
                     <DeleteReview review={reviewsArray}></DeleteReview>
                 )}
@@ -40,7 +41,6 @@ const ReviewList = ({spotId})=>{
             </Fragment>
             
             ))}
-            workinbg revuew
         </div>
     )
 }

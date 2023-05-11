@@ -2,29 +2,37 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { createReviewThunk } from "../../store/reviews"
 
-const ReviewForm =({onSubmit,review,review})=>{
-    const [stars,setStars] = useState(spot.stars)
-    const [review,setReview]= useState()
-
+const ReviewForm =({onSubmit,reviews,formType})=>{
+    const [stars,setStars] = useState(1)
+    const [review,setReview]= useState("")
+    // const{closeModal} =useModal()
     const dispatch=useDispatch()
 
-    review = {
+    reviews = {
         ...review,
         stars,
         review
     }
+    const handleSubmit=e=>{
+        e.preventDefault()
 
-    if(formType==="Submit Review"){
-        dispatch(createReviewThunk(review))
-        // history.push("/") push back to spot id
+        if(formType==="Submit Review"){
+            dispatch(createReviewThunk(review))
+            // .then(closeModal)
+            //close modal
+            // history.push("/") push back to spot id
+        }
     }
     
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <h2>HOW WAS YOUR STAY?</h2>
-            <textarea value={review} type='text'placeholder="Quick review" 
+            <textarea value={review} 
+            type='text'
+            placeholder="Quick review" 
             onChange={e=>setReview(e.target.value)}></textarea>
-        <input type="submit"></input>
+            
+        <input type="submit" value="submit Button"/>
         </form>
     )
 }
