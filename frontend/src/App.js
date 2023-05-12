@@ -5,7 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllSpots from "./components/SpotShow";
 import SpotForm from "./components/SpotForm";
-import SpotShow from "./components/SpotIndex";
+import SpotShow from "./components/SpotIndexItem";
 import createSpot from "./components/CreateSpotForm";
 import { Route } from "react-router-dom";
 import EditSpot from "./components/EditSpotForm";

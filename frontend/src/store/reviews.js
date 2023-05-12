@@ -117,8 +117,8 @@ const reviewsReducer = (state=initialState, action) => {
             const newState={...state,
                 reviews:{...state.reviews},
             [action.review.id]:action.review};
-            // newState[action.review.id]=action.review
-        //    console.log("thasdadsa new state log",newState)
+            newState[action.review.id]=action.review
+           console.log("thasdadsa new state log",newState.length)
             return newState
 
         }

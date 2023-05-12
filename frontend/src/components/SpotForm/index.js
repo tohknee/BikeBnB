@@ -27,7 +27,7 @@ const SpotForm=({spot, formType})=>{
     const [errors,setErrors]=useState({})
      
 
-    //do later
+
     const handleSubmit= async  e =>{
         e.preventDefault();
         setErrors({})

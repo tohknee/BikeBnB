@@ -21,20 +21,21 @@ const ReviewForm =({spotId,reviews,formType})=>{
     }
     const handleSubmit= async e=>{
         e.preventDefault()
-setErrors({})
+        setErrors({})
 
         if(formType==="Submit Review"){
            const dataErrors= await dispatch(createReviewThunk(reviews,spotId))
         //    console.log("tis before the iffffff",dataErrors.review)
            //not hitting the if statement
+           dispatch(getSpotThunk(spotId))
+            
             if(dataErrors){
                 // console.log("review errrorsasdasd",setErrors(dataErrors))
-                return setErrors(dataErrors)
+                setErrors(dataErrors)
             }
             else
            { closeModal()}
-           dispatch(getSpotThunk(spotId))
-            
+           
         }
     }
     //for star rating
