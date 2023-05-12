@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getSpotThunk } from "../../store/spots";
-import { getSpotReviewsThunk } from "../../store/reviews";
+import { deleteReviewThunk, getSpotReviewsThunk } from "../../store/reviews";
 import DeleteReview from "./DeleteReview";
 
 const ReviewList = ({spotId})=>{
@@ -16,6 +16,7 @@ const ReviewList = ({spotId})=>{
     useEffect(()=>{
         dispatch(getSpotThunk(spotId))//dispatch to trigger an acction to modify the store state
         dispatch(getSpotReviewsThunk(spotId))
+        dispatch(deleteReviewThunk(spotId))
     },[dispatch,spotId])//the getSpotthunk will retrieve data form api and update store with the new data
 
     // console.log()
@@ -33,9 +34,9 @@ const ReviewList = ({spotId})=>{
                 <div>Star rating{review.stars}</div>
                 
                 {/* if user ID matches the review user id then we show the delete button\ */}
-                {matchUser===review.userId &&(
-                    <DeleteReview review={reviewsArray}></DeleteReview>
-                )}
+                {/* {matchUser===review.userId &&( */}
+                    <DeleteReview review={review.id}></DeleteReview>
+                {/* )} */}
                     
                 
             </Fragment>
