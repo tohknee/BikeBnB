@@ -10,10 +10,8 @@ const ReviewList = ({spotId})=>{
     const reviewsObj=useSelector(state=>state.reviews.reviews)
     // const state=useSelector(state=>state)
     const reviewsArray=Object.values(reviewsObj)
-    const spotInfo=useSelector(state=>state)
-    // console.log('this si the state',state)
-    // console.log('asdadadasdobject',reviewsObj)
-    // console.log("reeeeview",reviewsArray)
+    const spotInfo=useSelector(state=>state.spots[spotId])
+
     useEffect(()=>{
         dispatch(getSpotThunk(spotId))//dispatch to trigger an acction to modify the store state
         dispatch(getSpotReviewsThunk(spotId))
@@ -27,11 +25,11 @@ const ReviewList = ({spotId})=>{
     const matchUser= useSelector(state=>state.session.user)
     return(
         <div>
-            {/* {console.log("review obj--------",spotInfo)} */}
-            <h2>Star Reviews AVG rating"[]"  number of reviews [] </h2>
+            {console.log("review obj--------",spotInfo)}
+            <h2>Star Reviews AVG rating"[{spotInfo.avgStarRating}]"  number of reviews [{spotInfo.numReviews}] </h2>
             {reviewsArray.map(review=> (
             <Fragment key={review.id}>
-                {/* {console.log("lloooooging review",review.User)} */}
+                {console.log("lloooooging review",review.User)}
                 <div>Review users name: {review.User.firstName}</div>
                 <div>Created at {review.createdAt}</div>
                 <h2>Review title:{review.review}</h2>

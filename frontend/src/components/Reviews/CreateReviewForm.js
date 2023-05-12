@@ -8,18 +8,16 @@ const CreateReviewForm =({spotId})=>{
     };
 
     return (
-        <button>This is the create review button
-            <OpenModalButton
+       
+            <OpenModalButton buttonText={"review"}
             modalComponent=
             { <ReviewForm
         reviews={reviews}
         formType="Submit Review"
         spotId={spotId}
-        
-        // onSubmit={createReview}
         ></ReviewForm>}>
             </OpenModalButton>
-        </button>
+      
         
     )
 }

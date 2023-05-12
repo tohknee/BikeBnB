@@ -10,9 +10,14 @@ import CreateReviewForm from "../Reviews/CreateReviewForm"
 const SpotIndexItem=()=>{
     const dispatch=useDispatch()
     const {spotId}= useParams()
-    const spot = useSelector(state=>state.spots[spotId])
-    const userObj=useSelector(state=>state.session.user)
-    console.log('uuuuser information test=====',userObj.id)
+    const spot = useSelector(state=>state.spots[spotId]) //this is the spot by id info
+    // const spot = useSelector(state=>state.spots[spotId])
+    const userObj=useSelector(state=>state.session.user)//this is the entire session obj
+    const review=useSelector(state=>state.reviews.reviews)
+    const reviewArray=Object.values(review)//loop through arrary for owner id. 
+    // console.log('uuuuser information test=====',userObj.id)
+    console.log("cheeeecking for review owner id",review)
+    console.log("esssion info", userObj)
     // const owner= useSelector(state=>state.spots[spotId][0])
     // const spotArray=Object.values(spot)
     // console.log("jhfjhggh",spot,"ssa÷dasdaad")
@@ -32,7 +37,7 @@ return null
     }
     return (
         <div>
-        {console.log("gettting info tester-----------",userObj.id===spot.ownerId)}
+    
     <h2>SpotName:{spot.name}</h2>
     <p>address:{spot.address},state-{spot.state},country-{spot.country}</p>
     <div>Images div
@@ -50,6 +55,7 @@ return null
     <div>Spot reviews</div>
     
     <ReviewList spotId={spotId}/>
+    
     
     
     <li>
