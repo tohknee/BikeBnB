@@ -35,7 +35,7 @@ const handleClick = index=>{
   for(let index=0; index<5; index++){//loop to only make 5 
     const className= index<activeRating ? 'filled': 'empty'//if current index less than rating. classname=filled. if over its empty
     starRating.push(
-      <div 
+      <div key={index}
       className={className}
       onMouseEnter={()=>handleMouseEnter(index)}
       onMouseLeave={handleMouseLeave}

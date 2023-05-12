@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getSpotThunk } from "../../store/spots";
-import { deleteReviewThunk, getSpotReviewsThunk } from "../../store/reviews";
+import { cleanUp, deleteReviewThunk, getSpotReviewsThunk } from "../../store/reviews";
 import DeleteReview from "./DeleteReview";
 import OpenModalButton from "../OpenModalButton";
 
@@ -12,12 +12,17 @@ const ReviewList = ({spotId})=>{
     // const state=useSelector(state=>state)
     const reviewsArray=Object.values(reviewsObj)
     const spotInfo=useSelector(state=>state.spots[spotId])
+    // console.log("loooking for anew dependency",reviewsArray)
 
-    useEffect(()=>{ dispatch(getSpotReviewsThunk(spotId))
-            dispatch(getSpotThunk(spotId))//dispatch to trigger an acction to modify the store state
-       
+    useEffect(()=>{ 
+        dispatch(getSpotReviewsThunk(spotId))
+            // dispatch(getSpotThunk(spotId))//dispatch to trigger an acction to modify the store state
+       return ()=>{
+        dispatch(cleanUp())
+       }
         // dispatch(deleteReviewThunk(spotId))
     },[dispatch,spotId])//the getSpotthunk will retrieve data form api and update store with the new data
+
 const matchUser= useSelector(state=>state.session.user)
 
     // console.log("checking the arraY", reviewsArray)
