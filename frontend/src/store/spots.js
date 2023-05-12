@@ -100,23 +100,31 @@ export const editSpotThunk=(spot)=> async(dispatch)=>{
 }
 
 export const addSpotThunk =(spot)=> async(dispatch)=>{
-    const response = await csrfFetch('/api/spots',{
-        method:'POST',
-        body:JSON.stringify(spot),
-        headers: {
-            'Content-Type':'application/json'
-        },
-    })
-    if(response.ok){
-        const data=await response.json();
-        dispatch(addSpot(data))
-        console.log(data.id ,"---------asdasdasdasdads")
-        for(const image of spot.SpotImages){
-            await dispatch (createImageThunk(data.id, image))
+    //try catch block to catch errors 
+    try {
+        const response = await csrfFetch('/api/spots',{
+            method:'POST',
+            body:JSON.stringify(spot),
+            headers: {
+                'Content-Type':'application/json'
+            },
+        })
+        // if(response.ok){
+            const data=await response.json();
+            dispatch(addSpot(data))
+            console.log(data.id ,"---------asdasdasdasdads")
+            for(const image of spot.SpotImages){
+                await dispatch (createImageThunk(data.id, image))
+                return data
+            // }
+            
+            //if there are errors then turn errors to json
+        }} catch(errors){
+            const data=await errors.json()
+            console.log('create spot errros',errors)
             return data
         }
-       
-    } return response
+    // } return response
 }
 export const getCurrentUserSpotThunk=()=>async(dispatch)=>{
     const response = await csrfFetch('/api/spots/current');
@@ -143,7 +151,6 @@ export const deleteSpotThunk = (spotId) => async(dispatch)=>{
 }
 //makesure this works
 export const createImageThunk=(spot,image )=> async(dispatch)=>{
-    console.log("a------------", spot)
     const response= await csrfFetch(`/api/spots/${spot}/images`,{//call thunk into add spot or send image images to  
         method:"POST",
         body:JSON.stringify(image),
