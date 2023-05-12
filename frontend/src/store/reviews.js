@@ -107,7 +107,7 @@ const reviewsReducer = (state=initialState, action) => {
             // const newState={...state,reviews:{...state.reviews}}
             const newState={...state , reviews:{}}
             // console.log("action keeyinh", action.reviews.Reviews)
-            action.reviews.Reviews.forEach(review=>{
+            action.reviews?.Reviews?.forEach(review=>{
                 newState.reviews[review.id]=review
             })
             // console.log("is this wokring",newState)
@@ -129,8 +129,8 @@ const reviewsReducer = (state=initialState, action) => {
             reviews:{...state.reviews},
         currentUserReviews:{...state.currentUserReviews}}
         //then delete the review by id from both objects
-            delete newState.reviews[action.reviewId]
-            delete newState.currentUserReviews[action.reviewId]
+            delete newState.reviews[action.review]
+            delete newState.currentUserReviews[action.review]
         return newState
         }
 
