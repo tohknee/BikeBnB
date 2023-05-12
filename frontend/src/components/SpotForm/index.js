@@ -80,6 +80,20 @@ const SpotForm=({spot, formType})=>{
         }
         }
     }
+    // const urlChecker =(url)=> {
+    //     const imageType = ['.jpg', '.png']
+    //     const urlCopy=url.substring(url.lastIndexOf('.'))
+    //     return imageType.includes(urlCopy)
+    // }
+    // const hnadleImageChange=e=>{
+    //     const url = e.target.value
+    //     if(!urlChecker(url)){
+    //         setErrors({imageUrl:"image must end with .jpg or .png"})
+    //     }else{
+    //         setErrors({})
+    //     }
+    //     setImageUrl(url)
+    // }
     return (
         <form onSubmit={handleSubmit}>
             <h2>{formType}</h2>
@@ -96,7 +110,7 @@ const SpotForm=({spot, formType})=>{
                 ></input>
             </label>
          
-            <label>
+            <label><div>{errors.address}</div>
                 Street address
                 <input
                 type="text"
@@ -105,9 +119,9 @@ const SpotForm=({spot, formType})=>{
                 onChange={e=>setAddress(e.target.value)}
                 ></input>
             </label>
-            <div>{errors.address}</div>
+            
             <div>
-                <label>
+                <label><div>{errors.city}</div>
                     City
                     <input
                     type="text"
@@ -116,7 +130,7 @@ const SpotForm=({spot, formType})=>{
                     onChange={e=>setCity(e.target.value)}>
                     </input>
                 </label>,
-                <label>
+                <label><div>{errors.state}</div>
                     State
                     <input
                     type="text"
@@ -146,6 +160,7 @@ const SpotForm=({spot, formType})=>{
             </div>
             <h2>Describe your place to Guests</h2>
             <p>Mention the best features of your space any special amenities</p>
+            <div>{errors.description}</div>
             <textarea
             type="text"
             value={description}
@@ -153,6 +168,7 @@ const SpotForm=({spot, formType})=>{
             onChange={e=>setDescription(e.target.value)}></textarea>
             <h2>{formType} Title for your spot</h2>
             <p>catch Guests attention with a spot title that hihglights</p>
+            <div>{errors.name}</div>
             <input 
             type="text"
             value={name}
@@ -160,6 +176,7 @@ const SpotForm=({spot, formType})=>{
             onChange={e=>setSpotName(e.target.value)}>
             </input>
             <h2>Set a base price for your spot</h2>
+            <div>{errors.price}</div>
             $<input
             type="text"
             value={price}
@@ -168,11 +185,14 @@ const SpotForm=({spot, formType})=>{
             ></input>
             <h2>Liven up your spot with photos</h2>
             <p>Submit a link to atleast one photo to publish your spot</p>
+            
+            {/* <div>{errors.}</div> */}
             <input
             type="text"
             value={url1}
             placeholder="Preview Image url"
             onChange={e=>setUrl1(e.target.value)}
+          
             ></input>
             <input
             type="text"
@@ -191,6 +211,12 @@ const SpotForm=({spot, formType})=>{
             value={url4}
             placeholder="Image url"
             onChange={e=>setUrl4(e.target.value)}>
+            </input>
+            <input
+            type="text"
+            value={url5}
+            placeholder="Image url"
+            onChange={e=>setUrl5(e.target.value)}>
             </input>
             <input type="submit" value={formType}></input>
         </form>

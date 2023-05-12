@@ -26,8 +26,8 @@ const ReviewList = ({spotId})=>{
 const matchUser= useSelector(state=>state.session.user)
 
     // console.log("checking the arraY", reviewsArray)
-if(!reviewsArray) return null;
-        ///this get tthe object of session user. has name email id
+if(!reviewsArray.length) return null;
+       
     
     return(
         <div>
