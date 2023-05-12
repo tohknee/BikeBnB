@@ -5,13 +5,12 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import GetAllSpots from "./components/SpotShow";
 import SpotForm from "./components/SpotForm";
-import SpotShow from "./components/SpotIndex";
+import SpotShow from "./components/SpotIndexItem";
 import createSpot from "./components/CreateSpotForm";
 import { Route } from "react-router-dom";
 import EditSpot from "./components/EditSpotForm";
 import GetCurrentUserSpot from "./components/GetCurrentUserSpot";
 import { getSpotReviewsThunk } from "./store/reviews";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -23,19 +22,21 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Switch>
-      
-            {/* make sur epaths are least specific to most specific */}
-      <Route exact path='/' component={GetAllSpots}></Route>
-      <Route exact path='/spots/new' component={createSpot}></Route>
-      <Route exact path='/spots/:spotId/edit' component={EditSpot}></Route>
-      {/* <Route exact path='/spots/:spotId' component={getSpotReviewsThunk}></Route> */}
-      <Route exact path='/spots/current' component={GetCurrentUserSpot}></Route>
-      <Route exact path='/spots/:spotId' component={SpotShow}></Route>
-        
-        </Switch>}
-      
-    
+      {isLoaded && (
+        <Switch>
+          {/* make sur epaths are least specific to most specific */}
+          <Route exact path="/" component={GetAllSpots}></Route>
+          <Route exact path="/spots/new" component={createSpot}></Route>
+          <Route exact path="/spots/:spotId/edit" component={EditSpot}></Route>
+          {/* <Route exact path='/spots/:spotId' component={getSpotReviewsThunk}></Route> */}
+          <Route
+            exact
+            path="/spots/current"
+            component={GetCurrentUserSpot}
+          ></Route>
+          <Route exact path="/spots/:spotId" component={SpotShow}></Route>
+        </Switch>
+      )}
     </>
   );
 }

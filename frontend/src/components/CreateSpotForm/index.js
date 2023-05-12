@@ -1,28 +1,26 @@
-
-import SpotForm from "../SpotForm"
+import SpotForm from "../SpotForm";
 
 //create spot component
-const CreateSpot = ()=> {
+const CreateSpot = () => {
+  const spot = {
+    country: "",
+    address: "",
+    city: "",
+    state: "",
+    description: "",
+    name: "",
+    price: "",
+    previewImage: "",
+    imageUrl: "",
+    // lat:'',
+    // lng:''
+  };
 
-    const spot= {
-        country:'',
-        address:'',
-        city:'',
-        state:'',
-        description:'',
-        name:'',
-        price:'',
-        previewImage:'',
-        imageUrl:'',
-        // lat:'',
-        // lng:''
-    }
-
-    return (
-        <>
-        <SpotForm spot={spot} formType='Create Spot'></SpotForm>
-        </>
-    )
-}
+  return (
+    <>
+      <SpotForm spot={spot} formType="Create Spot"></SpotForm>
+    </>
+  );
+};
 
 export default CreateSpot;

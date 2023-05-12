@@ -1,25 +1,24 @@
-import { useDispatch } from "react-redux"
-import { deleteReviewThunk } from "../../store/reviews"
-import { useModal } from "../../context/Modal"
-//review is passed in from reviewlist
-const DeleteReview = ({review})=>{
-    const dispatch=useDispatch()
-    // console.log('console.loooog ', review)
+import { useDispatch } from "react-redux";
+import { deleteReviewThunk } from "../../store/reviews";
+import { useModal } from "../../context/Modal";
 
-    // const {closeModal}=useModal()
+const DeleteReview = ({ review }) => {
+  const dispatch = useDispatch();
 
-    const handleDelete=e=>{
-        e.preventDefault();
-        dispatch(deleteReviewThunk(review))
-        // .then(closeModal)
-       
-    }
-    return (
-        <div>
-            <div>Delete modal</div>
-            <button onClick={handleDelete}>DELETE REVIEW BUTTON IN DELETE REVIEW</button>
-        </div>
-    )
-}
+  const { closeModal } = useModal();
 
-export default DeleteReview
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteReviewThunk(review)).then(closeModal);
+  };
+  return (
+    <div>
+      <div>Delete modal</div>
+      <button onClick={handleDelete}>
+        DELETE REVIEW BUTTON IN DELETE REVIEW
+      </button>
+    </div>
+  );
+};
+
+export default DeleteReview;
