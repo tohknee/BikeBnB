@@ -48,25 +48,18 @@ const SpotForm = ({ spot, formType }) => {
       ],
     };
 
-    // console.log("spot from spotform----", spot)
-
     if (formType === "Create Spot") {
       const spotData = await dispatch(addSpotThunk(spot));
-      console.log("asdasdsadasd", spotData);
-      // console.log('asdasd=-------',spotData.errors)
       if (spotData.errors) {
         //check if there is errros.
-        // console.log("asdads-------",spotData.errors)
         return setErrors(spotData.errors); //populate with errors
       }
-      // dispatch(addSpotThunk(spot))
       history.push(`/spots/${spotData.id}`); //redirect to spot id
     }
     if (formType === "Edit Spot") {
       const spotData = await dispatch(editSpotThunk(spot));
       history.push(`/spots/${spotData.id}`); // redirect to edit spot
       if (spotData.errors) {
-        // console.log('test spot errorrs',setErrors(spotData.errors))
         return setErrors(spotData.errors);
       }
     }

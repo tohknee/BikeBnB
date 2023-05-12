@@ -60,13 +60,11 @@ const deleteSpot = (spotId) => {
 };
 
 //1. add thunk action creator
-
 export const getAllSpotsThunk = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots");
   if (response.ok) {
     const data = await response.json();
     dispatch(getAllSpots(data));
-    // console.log("labe",data.Spots)
     return data.Spots;
   }
 };
@@ -131,14 +129,12 @@ export const getCurrentUserSpotThunk = () => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    // console.log("asdasdassssssssdas", data);
     dispatch(getCurrentUserSpots(data));
     return data;
   }
 };
 //fix delete spot
 export const deleteSpotThunk = (spotId) => async (dispatch) => {
-  // console.log("asdasdasdd",spotId)
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "DELETE",
   });

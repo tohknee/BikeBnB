@@ -89,19 +89,15 @@ const initialState = {
 
 //review reducer
 const reviewsReducer = (state = initialState, action) => {
-  // console.log('asdasda aciton review',action.reviews)
   switch (action.type) {
     case CLEAN_UP: {
       const newState = { ...state, reviews: {}, currentUserReviews: {} };
     }
     case GET_REVIEWS: {
-      // const newState={...state,reviews:{...state.reviews}}
       const newState = { ...state, reviews: {} };
-      // console.log("action keeyinh", action.reviews.Reviews)
       action.reviews?.Reviews?.forEach((review) => {
         newState.reviews[review.id] = review;
       });
-      // console.log("is this wokring",newState)
       return newState;
     }
     case ADD_REVIEW: {

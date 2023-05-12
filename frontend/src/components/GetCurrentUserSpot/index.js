@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import DeleteSpot from "../DeleteSpot";
 const GetCurrentUserSpots = () => {
   const dispatch = useDispatch();
-  // const spotsObj=useSelector(state=>state.spots.currentUserSpots)
-  // const spotsArray=Object.values(spotsObj)//array is called 0
   const state = useSelector((state) => state);
   console.log("state.log", state);
   const spotsArray = useSelector((state) => state.spots.currentUserSpots.Spots);
@@ -14,8 +12,7 @@ const GetCurrentUserSpots = () => {
     dispatch(getCurrentUserSpotThunk());
   }, [dispatch]);
 
-  console.log("uuuuuuuu", spotsArray);
-  // console.log('current user compoent log', spotsArray)
+
   if (!spotsArray) return null;
 
   return (
