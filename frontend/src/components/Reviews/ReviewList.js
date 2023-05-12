@@ -45,11 +45,11 @@ const ReviewList = ({ spotId }) => {
           <li>Review users name: {review.User.firstName}</li>
           <li>Created at {review.createdAt}</li>
           <li>Review contents : {review.review}</li>
-          <li>Star rating {review.stars}</li>
+          <li>Star rating {review?.stars}</li>
           {/* {console.log("asdasdsadsass==========",review.userId)}
                 {console.log("user to match -===-=-=-=-",matchUser.id)} */}
-          {/* if session user id matches the review id then we show delete modal button */}
-          {matchUser.id === review.userId && (
+          {/* if session user id matches the review id then we show delete modal button and if there is a user*/}
+          {matchUser && matchUser.id === review.userId && (
             <OpenModalButton
               buttonText="delete review modal button"
               modalComponent={<DeleteReview review={review.id}></DeleteReview>}

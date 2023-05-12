@@ -10,18 +10,9 @@ const SpotIndexItem = () => {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spot = useSelector((state) => state.spots[spotId]); //this is the spot by id info
-  // const spot = useSelector(state=>state.spots[spotId])
   const userObj = useSelector((state) => state.session.user); //this is the entire session obj
   const review = useSelector((state) => state.reviews.reviews);
   const reviewArray = Object.values(review); //loop through arrary for owner id.
-  // console.log('uuuuser information test=====',userObj.id)
-  console.log("cheeeecking for review owner id", review);
-  console.log("esssion info", userObj);
-  // const owner= useSelector(state=>state.spots[spotId][0])
-  // const spotArray=Object.values(spot)
-  // console.log("jhfjhggh",spot,"ssa÷dasdaad")
-  // console.log("---------",spotArray)
-  // console.log("spot owner ifno",owner)
 
   useEffect(() => {
     dispatch(getSpotThunk(spotId));
@@ -47,10 +38,10 @@ const SpotIndexItem = () => {
         ))}
       </div>
       <div>
-        Hosted by Firstname : {userObj.firstName} lastName: {userObj.lastName}{" "}
+        Hosted by Firstname : {userObj?.firstName} lastName: {userObj?.lastName}{" "}
       </div>
       {/* if session user id does not mathc spot id then we allow to create a review */}
-      {userObj.id !== spot.ownerId && (
+      {userObj?.id !== spot.ownerId && userObj && (
         <CreateReviewForm spotId={spotId}></CreateReviewForm>
       )}
 
