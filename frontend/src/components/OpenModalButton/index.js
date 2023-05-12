@@ -32,6 +32,6 @@ export default OpenModalButton;
 //     );
 //   };
 //   The Greeting component will render a button element that, when clicked, will trigger
-//    a modal with an h2 element of "Hello World!" and will print "Greeting initiated" to 
-//    the console logs. When the modal is closed, it will print "Greeting completed" to 
+//    a modal with an h2 element of "Hello World!" and will print "Greeting initiated" to
+//    the console logs. When the modal is closed, it will print "Greeting completed" to
 //    the console logs.

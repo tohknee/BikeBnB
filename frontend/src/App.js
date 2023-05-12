@@ -12,7 +12,6 @@ import EditSpot from "./components/EditSpotForm";
 import GetCurrentUserSpot from "./components/GetCurrentUserSpot";
 import { getSpotReviewsThunk } from "./store/reviews";
 
-
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,19 +22,21 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Switch>
-      
-            {/* make sur epaths are least specific to most specific */}
-      <Route exact path='/' component={GetAllSpots}></Route>
-      <Route exact path='/spots/new' component={createSpot}></Route>
-      <Route exact path='/spots/:spotId/edit' component={EditSpot}></Route>
-      {/* <Route exact path='/spots/:spotId' component={getSpotReviewsThunk}></Route> */}
-      <Route exact path='/spots/current' component={GetCurrentUserSpot}></Route>
-      <Route exact path='/spots/:spotId' component={SpotShow}></Route>
-        
-        </Switch>}
-      
-    
+      {isLoaded && (
+        <Switch>
+          {/* make sur epaths are least specific to most specific */}
+          <Route exact path="/" component={GetAllSpots}></Route>
+          <Route exact path="/spots/new" component={createSpot}></Route>
+          <Route exact path="/spots/:spotId/edit" component={EditSpot}></Route>
+          {/* <Route exact path='/spots/:spotId' component={getSpotReviewsThunk}></Route> */}
+          <Route
+            exact
+            path="/spots/current"
+            component={GetCurrentUserSpot}
+          ></Route>
+          <Route exact path="/spots/:spotId" component={SpotShow}></Route>
+        </Switch>
+      )}
     </>
   );
 }
