@@ -44,7 +44,7 @@ const StarRatingInput = ({ stars, disabled, onChange }) => {
         onMouseLeave={handleMouseLeave}
         onClick={() => handleClick(index)} //add onClick listener that calls handleClick
       >
-        <i className="fa fa-paw"></i>
+        <i className="fa fa-star"></i>
       </div>
     );
   }
