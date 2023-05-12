@@ -9,7 +9,7 @@ import { csrfFetch } from "./csrf"
 
 const ADD_REVIEW='spots/addReview'
 const DELETE_REVIEW='spots/deleteReview'
-
+const CLEAN_UP='spots/cleanup'
 const GET_REVIEWS='spots/getReviews'
 
 
@@ -32,6 +32,13 @@ const createReview=review=>{
         type:ADD_REVIEW,
         review
     }
+}
+
+//this will just run to overwrite the state
+export const cleanUp =()=> {
+return {
+    type:CLEAN_UP
+}
 }
 //define thunk to make request to backend to fetch reviews
 //then dispatch the getspotreviews action with data recieved from server 
@@ -83,16 +90,22 @@ export const createReviewThunk =(review,spotId )=> async (dispatch)=> {
 
     //define initial state
     const initialState={
-        reviews:{}, currentUserReviews:{}, reviewByRecent:[],
+        reviews:{}, currentUserReviews:{}, 
     }
 
 //review reducer
 const reviewsReducer = (state=initialState, action) => {
     // console.log('asdasda aciton review',action.reviews)
     switch(action.type){
+        case CLEAN_UP:{
+            const newState={...state,
+                reviews:{},
+                currentUserReviews:{}
+            }
+        }
         case GET_REVIEWS:{
             // const newState={...state,reviews:{...state.reviews}}
-            const newState={...state , reviews:{...state.reviews}}
+            const newState={...state , reviews:{}}
             // console.log("action keeyinh", action.reviews.Reviews)
             action.reviews.Reviews.forEach(review=>{
                 newState.reviews[review.id]=review

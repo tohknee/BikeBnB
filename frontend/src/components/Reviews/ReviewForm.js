@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { createReviewThunk } from "../../store/reviews"
 import { useModal } from "../../context/Modal"
 import StarRatingInput from "./ReviewRatingInput"
+import { getSpotThunk } from "../../store/spots"
 
 //passed in params from 
 const ReviewForm =({spotId,reviews,formType})=>{
@@ -27,14 +28,16 @@ setErrors({})
         //    console.log("tis before the iffffff",dataErrors.review)
            //not hitting the if statement
             if(dataErrors){
-                console.log("review errrorsasdasd",setErrors(dataErrors))
+                // console.log("review errrorsasdasd",setErrors(dataErrors))
                 return setErrors(dataErrors)
             }
             else
            { closeModal()}
+           dispatch(getSpotThunk(spotId))
             
         }
     }
+    //for star rating
 const onChange =(number)=>{
     setStars(parseInt(number))
 }
