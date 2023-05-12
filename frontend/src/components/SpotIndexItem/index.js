@@ -27,6 +27,7 @@ const SpotIndexItem = () => {
   }
   return (
     <div>
+      {console.log("spot object looooooog",spot.Owner.firstName)}
       <h2>SpotName:{spot.name}</h2>
       <p>
         address:{spot.address},state-{spot.state},country-{spot.country}
@@ -38,7 +39,8 @@ const SpotIndexItem = () => {
         ))}
       </div>
       <div>
-        Hosted by Firstname : {userObj?.firstName} lastName: {userObj?.lastName}{" "}
+
+        Hosted by Firstname : {spot.Owner.firstName} lastName: {spot.Owner.lastName}{" "}
       </div>
       {/* if session user id does not mathc spot id then we allow to create a review */}
       {userObj?.id !== spot.ownerId && userObj && (

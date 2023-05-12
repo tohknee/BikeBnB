@@ -28,6 +28,9 @@ const ReviewList = ({ spotId }) => {
   }, [dispatch, spotId]); //the getSpotthunk will retrieve data form api and update store with the new data
 
   const matchUser = useSelector((state) => state.session.user);
+  
+//sort reviews so newewst is on top
+  reviewsArray.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
 
   // console.log("checking the arraY", reviewsArray)
   if (!reviewsArray.length) return null;

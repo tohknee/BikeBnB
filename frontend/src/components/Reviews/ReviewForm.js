@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createReviewThunk } from "../../store/reviews";
+import { createReviewThunk, getSpotReviewsThunk } from "../../store/reviews";
 import { useModal } from "../../context/Modal";
 import StarRatingInput from "./ReviewRatingInput";
 import { getSpotThunk } from "../../store/spots";
@@ -24,11 +24,11 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
     setErrors({});
 
     if (formType === "Submit Review") {
-      const dataErrors = await dispatch(createReviewThunk(reviews, spotId));
+      const dataErrors = await dispatch(createReviewThunk(reviews, spotId))
       //    console.log("tis before the iffffff",dataErrors.review)
       //not hitting the if statement
-      dispatch(getSpotThunk(spotId)).then(closeModal);
-
+      .then(closeModal);
+dispatch(getSpotReviewsThunk(spotId))
       if (dataErrors) {
         // console.log("review errrorsasdasd",setErrors(dataErrors))
         setErrors(dataErrors);

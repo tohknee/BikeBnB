@@ -77,7 +77,6 @@ export const createReviewThunk = (review, spotId) => async (dispatch) => {
     return data;
   } catch (errors) {
     const data = await errors.json();
-    console.log("thiiii data ", data.errors);
     return data.errors;
   }
 };
