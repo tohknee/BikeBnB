@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getSpotThunk } from "../../store/spots";
 import { deleteReviewThunk, getSpotReviewsThunk } from "../../store/reviews";
 import DeleteReview from "./DeleteReview";
+import OpenModalButton from "../OpenModalButton";
 
 const ReviewList = ({spotId})=>{
     const dispatch=useDispatch();
@@ -12,38 +13,38 @@ const ReviewList = ({spotId})=>{
     const reviewsArray=Object.values(reviewsObj)
     const spotInfo=useSelector(state=>state.spots[spotId])
 
-    useEffect(()=>{
-        dispatch(getSpotThunk(spotId))//dispatch to trigger an acction to modify the store state
-        dispatch(getSpotReviewsThunk(spotId))
-        dispatch(deleteReviewThunk(spotId))
+    useEffect(()=>{ dispatch(getSpotReviewsThunk(spotId))
+            dispatch(getSpotThunk(spotId))//dispatch to trigger an acction to modify the store state
+       
+        // dispatch(deleteReviewThunk(spotId))
     },[dispatch,spotId])//the getSpotthunk will retrieve data form api and update store with the new data
+const matchUser= useSelector(state=>state.session.user)
 
-    // console.log()
     // console.log("checking the arraY", reviewsArray)
-
+if(!reviewsArray) return null;
         ///this get tthe object of session user. has name email id
-    const matchUser= useSelector(state=>state.session.user)
+    
     return(
         <div>
-            {console.log("review obj--------",spotInfo)}
+            {/* {console.log("review obj--------",spotInfo)} */}
             <h2>Star Reviews AVG rating"[{spotInfo.avgStarRating}]"  number of reviews [{spotInfo.numReviews}] </h2>
             {reviewsArray.map(review=> (
-            <Fragment key={review.id}>
-                {console.log("lloooooging review",review.User)}
-                <div>Review users name: {review.User.firstName}</div>
-                <div>Created at {review.createdAt}</div>
-                <h2>Review title:{review.review}</h2>
-                <div>Star rating    {review.stars}</div>
+            <ul key={review.id}>
+                {/* {console.log("lloooooging review",review.User)} */}
+                <li>Review users name: {review.User.firstName}</li>
+                <li>Created at {review.createdAt}</li>
+                <li>Review contents :  {review.review}</li>
+                <li>Star rating    {review.stars}</li>
                 {/* {console.log("asdasdsadsass==========",review.userId)}
                 {console.log("user to match -===-=-=-=-",matchUser.id)} */}
-                {/* if session user id matches the review id then we show delete button */}
+                {/* if session user id matches the review id then we show delete modal button */}
                 {matchUser.id===review.userId &&(
-                
-                    <DeleteReview review={review.id}></DeleteReview>
+                    <OpenModalButton
+                    buttonText="delete review modal button"
+                    modalComponent={<DeleteReview review={review.id}></DeleteReview>}></OpenModalButton>
+                    // 
                  )} 
-                    
-
-            </Fragment>
+            </ul>
             
             ))}
         </div>

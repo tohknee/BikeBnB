@@ -5,23 +5,14 @@
 //step 5. Work on component
 //step 6. render component into app
 
-
-import DeleteReview from "../components/Reviews/DeleteReview"
 import { csrfFetch } from "./csrf"
 
 const ADD_REVIEW='spots/addReview'
 const DELETE_REVIEW='spots/deleteReview'
-const GET_REVIEW='spots/getReview'
-const GET_REVIEWS='spots/getReviews'
-const USER_REVIEWS='spots/userReviews'
 
-//get a review
-const receiveReview = review=>{
-    return{
-        type:GET_REVIEW,
-        review
-    }
-}
+const GET_REVIEWS='spots/getReviews'
+
+
 //get all spot reviews
 const getSpotReviews = reviews=>{
     return{
@@ -55,13 +46,13 @@ export const getSpotReviewsThunk = (spotId) => async(dispatch) =>{
 
 
 export const deleteReviewThunk=(spotId)=>async(dispatch)=>{
-    console.log("deeeelete thunk review",spotId)
+    // console.log("deeeelete thunk review",spotId)
     const response= await csrfFetch (`/api/reviews/${spotId}`,{
         method:"DELETE"
     })
     if(response.ok){
         dispatch(deleteReview(spotId))
-        return response
+        // return response
     }
 }
 //review is first then spot id,
@@ -77,9 +68,9 @@ export const createReviewThunk =(review,spotId )=> async (dispatch)=> {
             body:JSON.stringify(review)
         });   
         const data= await response.json();
-        console.log("this is to check response data from server",data)
+        // console.log("this is to check response data from server"data)
         
-        dispatch(receiveReview(data))
+        dispatch(createReview(data))
         return data;
     }catch(errors){
         const data=await errors.json()
@@ -92,7 +83,7 @@ export const createReviewThunk =(review,spotId )=> async (dispatch)=> {
 
     //define initial state
     const initialState={
-        reviews:{}, currentUserReviews:{}
+        reviews:{}, currentUserReviews:{}, reviewByRecent:[],
     }
 
 //review reducer
@@ -101,7 +92,7 @@ const reviewsReducer = (state=initialState, action) => {
     switch(action.type){
         case GET_REVIEWS:{
             // const newState={...state,reviews:{...state.reviews}}
-            const newState={reviews:{...state.reviews}}
+            const newState={...state , reviews:{...state.reviews}}
             // console.log("action keeyinh", action.reviews.Reviews)
             action.reviews.Reviews.forEach(review=>{
                 newState.reviews[review.id]=review
@@ -110,14 +101,24 @@ const reviewsReducer = (state=initialState, action) => {
           return newState
         }
         case ADD_REVIEW:{
-            const newState={...state};
-            newState[action.review.id]=action.review
+            const newState={...state,
+                reviews:{...state.reviews},
+            [action.review.id]:action.review};
+            // newState[action.review.id]=action.review
+        //    console.log("thasdadsa new state log",newState)
             return newState
 
         }
         case DELETE_REVIEW:{
-            const newState={...state}
-            delete newState[action.reviewId]
+            //create new object copy with properties of state
+            //make copies of the all reviews and currentuserreviews
+            const newState={...state,
+            reviews:{...state.reviews},
+        currentUserReviews:{...state.currentUserReviews}}
+        //then delete the review by id from both objects
+            delete newState.reviews[action.reviewId]
+            delete newState.currentUserReviews[action.reviewId]
+        return newState
         }
 
         default:

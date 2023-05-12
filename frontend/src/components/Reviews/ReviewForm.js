@@ -57,7 +57,7 @@ const onChange =(number)=>{
             ></StarRatingInput>
             </label>
           
-            <p className="errors">{errors.review}</p>
+            <p className="errors">{errors.errors}</p>
             {/* <input 
             type="text"
             value={stars}
