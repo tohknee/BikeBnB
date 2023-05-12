@@ -10,9 +10,10 @@ const ReviewList = ({spotId})=>{
     const reviewsObj=useSelector(state=>state.reviews.reviews)
     // const state=useSelector(state=>state)
     const reviewsArray=Object.values(reviewsObj)
+    const spotInfo=useSelector(state=>state)
     // console.log('this si the state',state)
     // console.log('asdadadasdobject',reviewsObj)
-    console.log("reeeeview",reviewsArray)
+    // console.log("reeeeview",reviewsArray)
     useEffect(()=>{
         dispatch(getSpotThunk(spotId))//dispatch to trigger an acction to modify the store state
         dispatch(getSpotReviewsThunk(spotId))
@@ -20,25 +21,30 @@ const ReviewList = ({spotId})=>{
     },[dispatch,spotId])//the getSpotthunk will retrieve data form api and update store with the new data
 
     // console.log()
-    console.log("checking the arraY", reviewsArray)
+    // console.log("checking the arraY", reviewsArray)
 
+        ///this get tthe object of session user. has name email id
     const matchUser= useSelector(state=>state.session.user)
-    console.log(matchUser)
-
     return(
         <div>
-            {/* currently not mappinng the the reviews in the current spot */}
+            {/* {console.log("review obj--------",spotInfo)} */}
+            <h2>Star Reviews AVG rating"[]"  number of reviews [] </h2>
             {reviewsArray.map(review=> (
             <Fragment key={review.id}>
+                {/* {console.log("lloooooging review",review.User)} */}
+                <div>Review users name: {review.User.firstName}</div>
+                <div>Created at {review.createdAt}</div>
                 <h2>Review title:{review.review}</h2>
-                <div>Star rating{review.stars}</div>
+                <div>Star rating    {review.stars}</div>
+                {/* {console.log("asdasdsadsass==========",review.userId)}
+                {console.log("user to match -===-=-=-=-",matchUser.id)} */}
+                {/* if session user id matches the review id then we show delete button */}
+                {matchUser.id===review.userId &&(
                 
-                {/* if user ID matches the review user id then we show the delete button\ */}
-                {/* {matchUser===review.userId &&( */}
                     <DeleteReview review={review.id}></DeleteReview>
-                {/* )} */}
+                 )} 
                     
-                
+
             </Fragment>
             
             ))}

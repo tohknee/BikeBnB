@@ -5,9 +5,11 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 
+
+//component will represent a profile button
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false); //state is used to track if menu is shown
   const ulRef = useRef();
 
   const openMenu = () => {
