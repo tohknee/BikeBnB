@@ -2,8 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { addSpotThunk, editSpotThunk} from "../../store/spots"
-import CreateSpotForm from "../CreateSpotForm"
-import EditSpotForm from "../EditSpotForm"
+
 
 
 const SpotForm=({spot, formType})=>{
@@ -16,7 +15,6 @@ const SpotForm=({spot, formType})=>{
     const[description,setDescription]=useState(spot?.description)
     const[name,setSpotName]=useState(spot?.name)
     const[price,setPrice]=useState(spot?.price)
-    // const[previewImage,setPreviewImageUrl]=useState(spot?.previewImageUrl)
     const[imageUrl,setImageUrl]=useState(spot?.imageUrl)
     const [lat,setLat]=useState(spot?.lat)
     const [lng,setLng]=useState(spot?.lng)
@@ -63,7 +61,7 @@ const SpotForm=({spot, formType})=>{
 
         if(formType==="Create Spot"){
             const spotData= await dispatch(addSpotThunk(spot))
-            // console.log("asdasdsadasd", spotData)
+            console.log("asdasdsadasd", spotData)
             // console.log('asdasd=-------',spotData.errors)
             if(spotData.errors){//check if there is errros.
                 // console.log("asdads-------",spotData.errors)
@@ -76,14 +74,16 @@ const SpotForm=({spot, formType})=>{
             const spotData= await dispatch(editSpotThunk(spot))
             history.push(`/spots/${spotData.id}`)// redirect to edit spot
         if(spotData.errors){
+            // console.log('test spot errorrs',setErrors(spotData.errors))
             return setErrors(spotData.errors)
+
         }
         }
     }
     return (
         <form onSubmit={handleSubmit}>
             <h2>{formType}</h2>
-            {console.log(errors)}
+            {console.log("spot errrrooors",errors)}
             <h3>Wheres your place located</h3>
             <p>Guests will only get your exact adress once</p>
                <p className="errors">{errors.country}</p>

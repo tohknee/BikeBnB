@@ -66,23 +66,34 @@ export const deleteReviewThunk=(spotId)=>async(dispatch)=>{
 }
 //review is first then spot id,
 export const createReviewThunk =(review,spotId )=> async (dispatch)=> {
-    console.log('string review to create',spotId)
-    const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(review)
-    });   console.log("this i the review", review)
-    const data= await response.json();
-    const createdReview = data;
-    dispatch(receiveReview())
-    return createdReview
+    // console.log('string review to create',spotId)
+    try{
+
+        const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(review)
+        });   
+        const data= await response.json();
+        console.log("this is to check response data from server",data)
+        
+        dispatch(receiveReview(data))
+        return data;
+    }catch(errors){
+        const data=await errors.json()
+        console.log("thiiii data ", data.errors)
+        return data.errors
+    }
 }
-//define initial state
-const initialState={
-    reviews:{}, currentUserReviews:{}
-}
+
+
+
+    //define initial state
+    const initialState={
+        reviews:{}, currentUserReviews:{}
+    }
 
 //review reducer
 const reviewsReducer = (state=initialState, action) => {
