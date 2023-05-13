@@ -84,7 +84,7 @@ const SpotForm = ({ spot, formType }) => {
       {console.log("spot errrrooors", errors)}
       <h3>Where's your place located?</h3>
       <p>Guests will only get your exact adress once they booked a reservation.</p>
-      <p className="errors">{errors.country}</p>
+      <p className="error-text">{errors.country}</p>
       <label>
         Country
         <input
@@ -95,7 +95,7 @@ const SpotForm = ({ spot, formType }) => {
         ></input>
       </label>
       <label>
-        <div>{errors.address}</div>
+        <div className="error-text">{errors.address}</div>
         Street Address
         <input
           type="text"
@@ -106,7 +106,7 @@ const SpotForm = ({ spot, formType }) => {
       </label>
       <div>
         <label>
-          <div>{errors.city}</div>
+          <div className="error-text">{errors.city}</div>
           City
           <input
             type="text"
@@ -117,7 +117,7 @@ const SpotForm = ({ spot, formType }) => {
         </label>
         ,
         <label>
-          <div>{errors.state}</div>
+          <div className="error-text">{errors.state}</div>
           State
           <input
             type="text"
@@ -150,7 +150,8 @@ const SpotForm = ({ spot, formType }) => {
       </div>
       <h2>Describe your place to guests</h2>
       <p>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
-      <div>{errors.description}</div>
+      <div className="error-text">{errors.description}</div>
+      {console.log("errrooooooors",errors.description)}
       <textarea
         type="text"
         value={description}
@@ -159,7 +160,7 @@ const SpotForm = ({ spot, formType }) => {
       ></textarea>
       <h2>{formType} Title </h2>
       <p>Catch guest's attention with a spot title that highlights what makes your place special.</p>
-      <div>{errors.name}</div>
+      <div className="error-text">{errors.name}</div>
       <input
         type="text"
         value={name}
@@ -168,7 +169,7 @@ const SpotForm = ({ spot, formType }) => {
       ></input>
       <h2>Set a base price for your spot</h2>
       <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
-      <div>{errors.price}</div>$
+      <div className="error-text">{errors.price}</div>$
       <input
         type="text"
         value={price}
@@ -177,7 +178,7 @@ const SpotForm = ({ spot, formType }) => {
       ></input>
       <h2>Liven up your spot with photos</h2>
       <p>Submit a link to at least one photo to publish your spot.</p>
-      {/* <div>{errors.}</div> */}
+      {/* <div className="error-text">{errors.}</div> */}
       <input
         type="text"
         value={url1}

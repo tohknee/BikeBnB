@@ -5,3 +5,7 @@
   .delete-no{
     background-color: grey;
   }
+
+  .error-text{
+    color:red
+  }
