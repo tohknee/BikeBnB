@@ -16,8 +16,7 @@ const EditSpotForm = () => {
   if (!spot) return null;
   return (
     <>
-      <p>EDIT SPOT #{spotId}</p>
-      <SpotForm spot={spot} formType="Edit Spot"></SpotForm>
+      <SpotForm spot={spot} formType="Update your spot"></SpotForm>
     </>
   );
 };

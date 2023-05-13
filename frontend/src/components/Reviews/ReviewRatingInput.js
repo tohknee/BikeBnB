@@ -51,13 +51,13 @@ const StarRatingInput = ({ stars, disabled, onChange }) => {
 
   return (
     <>
-      <input
+      {/* <input
         type="number"
         disabled={disabled}
         value={stars}
         onChange={onChange}
-      />
-      <div className="rating-input">{starRating}</div>
+      /> */}
+      <div className="rating-input">{starRating} Stars</div>
     </>
   );
 };

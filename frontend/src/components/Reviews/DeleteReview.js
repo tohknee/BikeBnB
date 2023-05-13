@@ -1,22 +1,27 @@
 import { useDispatch } from "react-redux";
 import { deleteReviewThunk } from "../../store/reviews";
 import { useModal } from "../../context/Modal";
+import { getSpotThunk } from "../../store/spots";
 
-const DeleteReview = ({ review }) => {
+const DeleteReview = ({ review ,spotId}) => {
   const dispatch = useDispatch();
 
   const { closeModal } = useModal();
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
-    dispatch(deleteReviewThunk(review)).then(closeModal);
+    await dispatch(deleteReviewThunk(review)).then(closeModal);
+  dispatch(getSpotThunk(spotId))
+    
   };
   return (
     <div>
-      <div>Delete modal</div>
+      <h2>Confirm Delete</h2>
+      <p>Are you sure you want to delete this review?</p>
       <button onClick={handleDelete}>
-        DELETE REVIEW BUTTON IN DELETE REVIEW
+        Yes(Delete Review)make red
       </button>
+      <button onClick={closeModal}>No (Keep Review)make grey</button>
     </div>
   );
 };

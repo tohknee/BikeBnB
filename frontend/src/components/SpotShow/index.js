@@ -13,22 +13,20 @@ const SpotIndex = () => {
     dispatch(getAllSpotsThunk());
   }, [dispatch]);
 
-  console.log("spots array information", spotsArray);
   return (
     <>
       <h1>Spots List</h1>
+    {console.log("sppooooot raing",spotsArray.rating)}
       {spotsArray.map((spot) => (
-        <div key={spot.id}>
-          <Link to={`/spots/${spot.id}`}>
+          <Link  to={`/spots/${spot.id}`}>
             <h2>{spot.name}</h2>
-          </Link>
           <img src={spot.previewImage} alt="spot Image"></img>
           <h3>
             {spot.city},{spot.state}
           </h3>
-          <h4>${spot.price} per night</h4>
-          <h5>StarRAting{spot.rating}</h5>
-        </div>
+          <h4>${spot.price} Night</h4>
+          <i className="fa fa-star">{spot.avgRating? spot.avgRating?.toFixed(1):"New"}</i>
+          </Link>
       ))}
     </>
   );
