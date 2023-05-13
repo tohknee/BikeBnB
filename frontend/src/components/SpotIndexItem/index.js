@@ -5,6 +5,7 @@ import { deleteSpotThunk, getSpotThunk } from "../../store/spots";
 import { Link } from "react-router-dom";
 import ReviewList from "../Reviews/ReviewList";
 import CreateReviewForm from "../Reviews/CreateReviewForm";
+import OpenModalButton from "../OpenModalButton";
 
 const SpotIndexItem = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,12 @@ const SpotIndexItem = () => {
     return null;
   }
   //find a review by currentuserid. if true then hide create review
-  const reviewOwnerMatcher = reviewArray.find(review=> review.userId===userObj?.id)
-console.log("reviews found by owner",spot.price)
+  const reviewOwnerMatcher = reviewArray.find(
+    (review) => review.userId === userObj?.id
+  );
+  const bookingAlert=()=>{
+    alert("Feature coming soon")
+  }
   return (
     <div>
       <h2>{spot.name}</h2>
@@ -45,23 +50,30 @@ console.log("reviews found by owner",spot.price)
       </div>
       <p>Paragraph: {spot.description}</p>
       <h2>
-      <i className="fa fa-star"></i>{spot.avgStarRating? spot.avgStarRating.toFixed(1) :"New"} {spot.numReviews? '·' :""} {spot.numReviews===1?"1 Review": (spot.numReviews>1?`${spot.numReviews} Reviews`:"")}
-      </h2>  
+        <i className="fa fa-star"></i>
+        {spot.avgStarRating ? spot.avgStarRating.toFixed(1) : "New"}{" "}
+        {spot.numReviews ? "·" : ""}{" "}
+        {spot.numReviews === 1
+          ? "1 Review"
+          : spot.numReviews > 1
+          ? `${spot.numReviews} Reviews`
+          : ""}
+      </h2>
       {/* if session user id does not mathc spot id then we allow to create a review */}
-      {userObj?.id !== spot.ownerId && userObj && !reviewOwnerMatcher&& (
+      {userObj?.id !== spot.ownerId && userObj && !reviewOwnerMatcher && (
         <div>
-        <CreateReviewForm spotId={spotId}></CreateReviewForm>
-       {spot.numReviews===0?(<p>Be the first to write a review!</p>) :""} 
+          <CreateReviewForm spotId={spotId}></CreateReviewForm>
+          {spot.numReviews === 0 ? <p>Be the first to write a review!</p> : ""}
         </div>
       )}
       <div className="callout">
         callout buox
-        <p>${spot.price}</p>
-        <i className="fa fa-star"></i>{spot.avgStarRating? spot.avgStarRating.toFixed(1) :"New"} 
-        <button></button>
+        <p>${spot.price} night</p>
+        <i className="fa fa-star"></i>
+        {spot.avgStarRating ? spot.avgStarRating.toFixed(1) : "New"}
+        <button onClick={()=>bookingAlert()}>Reserve</button>
       </div>
-      <ReviewList spotId={spotId}/>
-        
+      <ReviewList spotId={spotId} />
     </div>
   );
 };
