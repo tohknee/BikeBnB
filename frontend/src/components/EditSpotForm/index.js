@@ -8,13 +8,10 @@ const EditSpotForm = () => {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spot = useSelector((state) => state.spots[spotId]); //normalized
-  console.log("spoot", spot); //{}
+  console.log("spoot", spot); 
 
   useEffect(() => {
-    // console.log("spotttt in useEffecy===", spot)
-
     dispatch(getSpotThunk(spotId));
-    // console.log("spotttt in dispatch===", spot)
   }, [dispatch, spotId]);
   if (!spot) return null;
   return (

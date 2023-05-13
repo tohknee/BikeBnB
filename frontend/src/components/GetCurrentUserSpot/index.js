@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import DeleteSpot from "../DeleteSpot";
 const GetCurrentUserSpots = () => {
   const dispatch = useDispatch();
-  // const spotsObj=useSelector(state=>state.spots.currentUserSpots)
-  // const spotsArray=Object.values(spotsObj)//array is called 0
   const state = useSelector((state) => state);
   console.log("state.log", state);
   const spotsArray = useSelector((state) => state.spots.currentUserSpots.Spots);
@@ -14,20 +12,23 @@ const GetCurrentUserSpots = () => {
     dispatch(getCurrentUserSpotThunk());
   }, [dispatch]);
 
-  console.log("uuuuuuuu", spotsArray);
-  // console.log('current user compoent log', spotsArray)
+
   if (!spotsArray) return null;
 
   return (
     <>
-      <p>current user spot</p>
+      <h2>Manage Your Spots</h2>
+     <button><Link to={'/spots/new'}>Create new Spot</Link></button>
       {spotsArray.map((spot) => (
         <div key={spot.id}>
-          <h2>{spot.name}</h2>
-          <div>spots</div>
-          <Link className="edit-link" to={`/spots/${spot.id}/edit`}>
-            Edit
-          </Link>
+          <Link to={`/spots/${spot.id}`}> <h2>{spot.name}</h2></Link>
+          <img src={spot.previewImage}></img>
+          <i className="fa fa-star">##{spot.city},{spot.state}</i>
+          <div></div>
+          <div>{spot.avgRating}</div>
+          <button><Link className="edit-link" to={`/spots/${spot.id}/edit`}>
+            Update
+          </Link></button> 
           <DeleteSpot spot={spot}></DeleteSpot>
         </div>
       ))}

@@ -12,8 +12,8 @@ const CreateSpot = () => {
     price: "",
     previewImage: "",
     imageUrl: "",
-    // lat:'',
-    // lng:''
+    lat:'',
+    lng:''
   };
 
   return (

@@ -25,12 +25,9 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
 
     if (formType === "Submit Review") {
       const dataErrors = await dispatch(createReviewThunk(reviews, spotId))
-      //    console.log("tis before the iffffff",dataErrors.review)
-      //not hitting the if statement
       .then(closeModal);
 dispatch(getSpotReviewsThunk(spotId))
       if (dataErrors) {
-        // console.log("review errrorsasdasd",setErrors(dataErrors))
         setErrors(dataErrors);
       }
     }
@@ -44,8 +41,6 @@ dispatch(getSpotReviewsThunk(spotId))
     <form onSubmit={handleSubmit}>
       <h2>HOW WAS YOUR STAY?</h2>
       <label>
-        {/* errros is an empty array. */}
-        {/* {console.log("cjheeeeecking",errors)} */}
         <textarea
           value={review}
           type="text"
@@ -58,14 +53,7 @@ dispatch(getSpotReviewsThunk(spotId))
           onChange={onChange}
         ></StarRatingInput>
       </label>
-
       <p className="errors">{errors.errors}</p>
-      {/* <input 
-            type="text"
-            value={stars}
-            onChange={e=>setStars(e.target.value)}></input>
-            <div>replace this with star rating input component</div> */}
-
       <input type="submit" value="submit Button" />
     </form>
   );
