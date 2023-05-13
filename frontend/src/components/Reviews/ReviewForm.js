@@ -44,7 +44,7 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>HOW WAS YOUR STAY?</h2>
+      <h2>How was your stay?</h2>
       <label>
         <textarea
           value={review}

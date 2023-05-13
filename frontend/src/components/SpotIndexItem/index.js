@@ -67,8 +67,7 @@ const SpotIndexItem = () => {
         </div>
       )}
       <div className="callout">
-        callout buox
-        <p>${spot.price} night</p>
+        callout box div<p>${spot.price} night</p>
         <i className="fa fa-star"></i>
         {spot.avgStarRating ? spot.avgStarRating.toFixed(1) : "New"}
         <button onClick={()=>bookingAlert()}>Reserve</button>

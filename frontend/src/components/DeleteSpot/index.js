@@ -20,8 +20,8 @@ const DeleteSpot = ({ spot }) => {
     <div>
       <h2>Confirm Delete</h2>
       <p>Are you sure you want to remove this spot?</p>
-      <button onClick={handleDelete}>Yes(Delete Spot) make red</button>
-      <button onClick={closeModal}>No(Keep Spot)</button>
+      <button onClick={handleDelete} className="delete-yes">Yes(Delete Spot)</button>
+      <button onClick={closeModal}className="delete-no">No(Keep Spot)</button>
     </div>
   );
 };

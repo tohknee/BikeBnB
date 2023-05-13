@@ -1,1 +1,7 @@
 /* TODO Add site wide styles */
+.delete-yes {
+    background-color: red;
+  }
+  .delete-no{
+    background-color: grey;
+  }
