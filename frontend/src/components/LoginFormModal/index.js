@@ -23,7 +23,7 @@ function LoginFormModal() {
         }
       });
   };
-
+//this is for demo user log in
   const handleDemoUser = e=>{
     e.preventDefault();
     return dispatch(sessionActions.login({credential:"demo@user.io", password:"password"}))

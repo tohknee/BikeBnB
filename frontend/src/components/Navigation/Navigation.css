@@ -2,4 +2,23 @@
     display: none;
   }
 
-  
+  .navbar {
+    /* background-color: blue; */
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+  }
+
+  .spot-profile{
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    
+  }
+  .logo-div {
+    max-width: 8rem;
+    display: flex;
+    justify-content: left;
+  }

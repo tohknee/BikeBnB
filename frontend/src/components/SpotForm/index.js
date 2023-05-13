@@ -14,8 +14,8 @@ const SpotForm = ({ spot, formType }) => {
   const [name, setSpotName] = useState(spot?.name);
   const [price, setPrice] = useState(spot?.price);
   const [imageUrl, setImageUrl] = useState(spot?.imageUrl);
-  const [lat, setLat] = useState(spot?.lat);
-  const [lng, setLng] = useState(spot?.lng);
+  const [lat, setLat] = useState(1);
+  const [lng, setLng] = useState(1);
   const [url1, setUrl1] = useState("");
   const [url2, setUrl2] = useState("");
   const [url3, setUrl3] = useState("");
@@ -36,7 +36,7 @@ const SpotForm = ({ spot, formType }) => {
       description,
       name,
       price,
-      imageUrl,
+      // imageUrl,
       lat,
       lng,
       SpotImages: [
@@ -46,6 +46,7 @@ const SpotForm = ({ spot, formType }) => {
         { preview: false, url: url4 },
         { preview: false, url: url5 },
       ],
+      
     };
 
     if (formType === "Create a New Spot") {
@@ -127,7 +128,7 @@ const SpotForm = ({ spot, formType }) => {
           ></input>
         </label>
       </div>
-      <div>
+      {/* <div>
         <label>
           Latitude
           <input
@@ -147,11 +148,10 @@ const SpotForm = ({ spot, formType }) => {
             onChange={(e) => setLng(e.target.value)}
           ></input>
         </label>
-      </div>
+      </div> */}
       <h2>Describe your place to guests</h2>
       <p>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
       <div className="error-text">{errors.description}</div>
-      {console.log("errrooooooors",errors.description)}
       <textarea
         type="text"
         value={description}
@@ -176,39 +176,44 @@ const SpotForm = ({ spot, formType }) => {
         placeholder="Price per night (usd)"
         onChange={(e) => setPrice(e.target.value)}
       ></input>
+
+    {formType==="Create a New Spot" &&(
+      <>
       <h2>Liven up your spot with photos</h2>
       <p>Submit a link to at least one photo to publish your spot.</p>
       {/* <div className="error-text">{errors.}</div> */}
       <input
-        type="text"
-        value={url1}
-        placeholder="Preview Image URL"
-        onChange={(e) => setUrl1(e.target.value)}
+      type="text"
+      value={url1}
+      placeholder="Preview Image URL"
+      onChange={(e) => setUrl1(e.target.value)}
       ></input>
       <input
-        type="text"
-        value={url2}
-        placeholder="Image URL"
-        onChange={(e) => setUrl2(e.target.value)}
+      type="text"
+      value={url2}
+      placeholder="Image URL"
+      onChange={(e) => setUrl2(e.target.value)}
       ></input>
       <input
-        type="text"
-        value={url3}
-        placeholder="Image URL"
-        onChange={(e) => setUrl3(e.target.value)}
+      type="text"
+      value={url3}
+      placeholder="Image URL"
+      onChange={(e) => setUrl3(e.target.value)}
       ></input>
       <input
-        type="text"
-        value={url4}
-        placeholder="Image URL"
-        onChange={(e) => setUrl4(e.target.value)}
+      type="text"
+      value={url4}
+      placeholder="Image URL"
+      onChange={(e) => setUrl4(e.target.value)}
       ></input>
       <input
-        type="text"
-        value={url5}
-        placeholder="Image URL"
-        onChange={(e) => setUrl5(e.target.value)}
+      type="text"
+      value={url5}
+      placeholder="Image URL"
+      onChange={(e) => setUrl5(e.target.value)}
       ></input>
+      </>
+      )}
       <input type="submit" value={formType}></input>
     </form>
   );

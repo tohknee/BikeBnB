@@ -107,13 +107,13 @@ export const addSpotThunk = (spot) => async (dispatch) => {
       },
     });
     const data = await response.json();
-    dispatch(addSpot(data));
-    console.log(data.id, "---------asdasdasdasdads");
+    
     for (const image of spot.SpotImages) {
-      await dispatch(createImageThunk(data.id, image));
-      return data;
+      await dispatch(createImageThunk(data, image));
       //if there are errors then turn errors to json
     }
+    dispatch(addSpot(data));
+    return data;
   } catch (errors) {
     const data = await errors.json();
     return data;
@@ -139,7 +139,7 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
   }
 };
 export const createImageThunk = (spot, image) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${spot}/images`, {
+  const response = await csrfFetch(`/api/spots/${spot.id}/images`, {
     //call thunk into add spot or send image images to
     method: "POST",
     body: JSON.stringify(image),
@@ -147,6 +147,9 @@ export const createImageThunk = (spot, image) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+  const data =await response.json()
+  dispatch(addSpot(data))
+  return data
 };
 
 //state object

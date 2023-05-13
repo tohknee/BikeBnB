@@ -39,12 +39,12 @@ const SpotIndexItem = () => {
       <p>
         Location:{spot.city},{spot.state},{spot.country}
       </p>
-      <div>
-        Images div
+      <div className="image-div">
         {spot.SpotImages.map((image) => (
           <img key={image.id} src={image.url}></img>
         ))}
       </div>
+      {console.log("checccking spot image", spot.SpotImages)}
       <div>
         Hosted by :{spot.Owner.firstName},{spot.Owner.lastName}
       </div>
