@@ -56,7 +56,7 @@ const SpotForm = ({ spot, formType }) => {
       }
       history.push(`/spots/${spotData.id}`); //redirect to spot id
     }
-    if (formType === "Edit Spot") {
+    if (formType === "Update your spot") {
       const spotData = await dispatch(editSpotThunk(spot));
       history.push(`/spots/${spotData.id}`); // redirect to edit spot
       if (spotData.errors) {

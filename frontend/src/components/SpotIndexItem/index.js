@@ -27,7 +27,6 @@ const SpotIndexItem = () => {
   }
   return (
     <div>
-      {console.log("spot object looooooog",spot.Owner.firstName)}
       <h2>SpotName:{spot.name}</h2>
       <p>
         address:{spot.address},state-{spot.state},country-{spot.country}
@@ -39,25 +38,18 @@ const SpotIndexItem = () => {
         ))}
       </div>
       <div>
-
         Hosted by Firstname : {spot.Owner.firstName} lastName: {spot.Owner.lastName}{" "}
       </div>
+      <h2>
+      <i className="fa fa-star"></i>{spot.avgStarRating? spot.avgStarRating :"New"}{spot.numReviews?spot.numReviews:""}
+      </h2>  
       {/* if session user id does not mathc spot id then we allow to create a review */}
       {userObj?.id !== spot.ownerId && userObj && (
         <CreateReviewForm spotId={spotId}></CreateReviewForm>
       )}
-
-      <div>Spot reviews</div>
-
-      <ReviewList spotId={spotId} />
-
-      <li>
-        <div className="li-contents-flex">
-          <Link to={`/spots/${spot.id}`}>Spot #{spot.id}</Link>
-
-          <div className="buttons-container"></div>
-        </div>
-      </li>
+      {spot.numReviews===0?(<p>Be the first to write a review!</p>):""}
+      <ReviewList spotId={spotId}/>
+        
     </div>
   );
 };

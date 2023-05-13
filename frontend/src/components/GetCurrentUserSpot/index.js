@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserSpotThunk } from "../../store/spots";
 import { Link } from "react-router-dom";
 import DeleteSpot from "../DeleteSpot";
+import OpenModalButton from "../OpenModalButton";
 const GetCurrentUserSpots = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -29,7 +30,8 @@ const GetCurrentUserSpots = () => {
           <button><Link className="edit-link" to={`/spots/${spot.id}/edit`}>
             Update
           </Link></button> 
-          <DeleteSpot spot={spot}></DeleteSpot>
+          <OpenModalButton buttonText={"Delete"} modalComponent={<DeleteSpot spot={spot}></DeleteSpot>}></OpenModalButton>
+       
         </div>
       ))}
     </>

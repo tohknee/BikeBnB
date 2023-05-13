@@ -24,9 +24,11 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
     setErrors({});
 
     if (formType === "Submit Review") {
-      const dataErrors = await dispatch(createReviewThunk(reviews, spotId))
-      .then(closeModal);
-dispatch(getSpotReviewsThunk(spotId))
+      const dataErrors = await dispatch(
+        createReviewThunk(reviews, spotId)
+      ).then(closeModal);
+      dispatch(getSpotReviewsThunk(spotId));
+      dispatch(getSpotThunk(spotId))
       if (dataErrors) {
         setErrors(dataErrors);
       }

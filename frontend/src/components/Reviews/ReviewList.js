@@ -1,9 +1,8 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpotThunk } from "../../store/spots";
+
 import {
   cleanUp,
-  deleteReviewThunk,
   getSpotReviewsThunk,
 } from "../../store/reviews";
 import DeleteReview from "./DeleteReview";
@@ -32,10 +31,6 @@ const ReviewList = ({ spotId }) => {
 
   return (
     <div>
-      <h2>
-        Star Reviews AVG rating"[{spotInfo.avgStarRating}]" number of reviews [
-        {spotInfo.numReviews}]{" "}
-      </h2>
       {reviewsArray.map((review) => (
         <ul key={review.id}>
           <li>Review users name: {review.User.firstName}</li>
@@ -46,7 +41,7 @@ const ReviewList = ({ spotId }) => {
           {matchUser && matchUser.id === review.userId && (
             <OpenModalButton
               buttonText="delete review modal button"
-              modalComponent={<DeleteReview review={review.id}></DeleteReview>}
+              modalComponent={<DeleteReview spotId={spotId} review={review.id}></DeleteReview>}
             ></OpenModalButton>
             //
           )}
