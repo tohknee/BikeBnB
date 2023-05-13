@@ -116,7 +116,6 @@ export const addSpotThunk = (spot) => async (dispatch) => {
     }
   } catch (errors) {
     const data = await errors.json();
-    console.log("create spot errros", errors);
     return data;
   }
 };

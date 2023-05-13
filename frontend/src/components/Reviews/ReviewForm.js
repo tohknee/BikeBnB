@@ -7,7 +7,7 @@ import { getSpotThunk } from "../../store/spots";
 
 //passed in params from
 const ReviewForm = ({ spotId, reviews, formType }) => {
-  const [stars, setStars] = useState(1);
+  const [stars, setStars] = useState(0);
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
@@ -21,7 +21,7 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({});
+    setErrors({}); //reset errors
 
     if (formType === "Submit Review") {
       const dataErrors = await dispatch(
@@ -30,7 +30,10 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
       dispatch(getSpotReviewsThunk(spotId));
       dispatch(getSpotThunk(spotId))
       if (dataErrors) {
+        console.log("checkiiing for errors",dataErrors)
         setErrors(dataErrors);
+      }else{
+        closeModal()
       }
     }
   };
@@ -46,7 +49,7 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
         <textarea
           value={review}
           type="text"
-          placeholder="Quick review"
+          placeholder="Leave your review here..."
           onChange={(e) => setReview(e.target.value)}
         ></textarea>
         <StarRatingInput
@@ -56,7 +59,8 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
         ></StarRatingInput>
       </label>
       <p className="errors">{errors.errors}</p>
-      <input type="submit" value="submit Button" />
+    
+      <input type="submit" disabled={review.length<10 || stars===0} value="Submit Your Review" />
     </form>
   );
 };

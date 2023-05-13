@@ -25,11 +25,14 @@ const SpotIndexItem = () => {
   if (!spot.SpotImages) {
     return null;
   }
+  //find a review by currentuserid. if true then hide create review
+  const reviewOwnerMatcher = reviewArray.find(review=> review.userId===userObj?.id)
+console.log("reviews found by owner",spot.price)
   return (
     <div>
-      <h2>SpotName:{spot.name}</h2>
+      <h2>{spot.name}</h2>
       <p>
-        address:{spot.address},state-{spot.state},country-{spot.country}
+        Location:{spot.city},{spot.state},{spot.country}
       </p>
       <div>
         Images div
@@ -38,16 +41,25 @@ const SpotIndexItem = () => {
         ))}
       </div>
       <div>
-        Hosted by Firstname : {spot.Owner.firstName} lastName: {spot.Owner.lastName}{" "}
+        Hosted by :{spot.Owner.firstName},{spot.Owner.lastName}
       </div>
+      <p>Paragraph: {spot.description}</p>
       <h2>
-      <i className="fa fa-star"></i>{spot.avgStarRating? spot.avgStarRating :"New"}{spot.numReviews?spot.numReviews:""}
+      <i className="fa fa-star"></i>{spot.avgStarRating? spot.avgStarRating.toFixed(1) :"New"} {spot.numReviews? '·' :""} {spot.numReviews===1?"1 Review": (spot.numReviews>1?`${spot.numReviews} Reviews`:"")}
       </h2>  
       {/* if session user id does not mathc spot id then we allow to create a review */}
-      {userObj?.id !== spot.ownerId && userObj && (
+      {userObj?.id !== spot.ownerId && userObj && !reviewOwnerMatcher&& (
+        <div>
         <CreateReviewForm spotId={spotId}></CreateReviewForm>
+       {spot.numReviews===0?(<p>Be the first to write a review!</p>) :""} 
+        </div>
       )}
-      {spot.numReviews===0?(<p>Be the first to write a review!</p>):""}
+      <div className="callout">
+        callout buox
+        <p>${spot.price}</p>
+        <i className="fa fa-star"></i>{spot.avgStarRating? spot.avgStarRating.toFixed(1) :"New"} 
+        <button></button>
+      </div>
       <ReviewList spotId={spotId}/>
         
     </div>

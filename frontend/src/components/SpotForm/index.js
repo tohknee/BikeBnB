@@ -48,7 +48,7 @@ const SpotForm = ({ spot, formType }) => {
       ],
     };
 
-    if (formType === "Create Spot") {
+    if (formType === "Create a New Spot") {
       const spotData = await dispatch(addSpotThunk(spot));
       if (spotData.errors) {
         //check if there is errros.
@@ -82,8 +82,8 @@ const SpotForm = ({ spot, formType }) => {
     <form onSubmit={handleSubmit}>
       <h2>{formType}</h2>
       {console.log("spot errrrooors", errors)}
-      <h3>Wheres your place located</h3>
-      <p>Guests will only get your exact adress once</p>
+      <h3>Where's your place located?</h3>
+      <p>Guests will only get your exact adress once they booked a reservation.</p>
       <p className="errors">{errors.country}</p>
       <label>
         Country
@@ -96,7 +96,7 @@ const SpotForm = ({ spot, formType }) => {
       </label>
       <label>
         <div>{errors.address}</div>
-        Street address
+        Street Address
         <input
           type="text"
           value={address}
@@ -148,25 +148,26 @@ const SpotForm = ({ spot, formType }) => {
           ></input>
         </label>
       </div>
-      <h2>Describe your place to Guests</h2>
-      <p>Mention the best features of your space any special amenities</p>
+      <h2>Describe your place to guests</h2>
+      <p>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
       <div>{errors.description}</div>
       <textarea
         type="text"
         value={description}
-        placeholder="please write atleast 30 character"
+        placeholder="Please write at least 30 characters."
         onChange={(e) => setDescription(e.target.value)}
       ></textarea>
-      <h2>{formType} Title for your spot</h2>
-      <p>catch Guests attention with a spot title that hihglights</p>
+      <h2>{formType} Title </h2>
+      <p>Catch guest's attention with a spot title that highlights what makes your place special.</p>
       <div>{errors.name}</div>
       <input
         type="text"
         value={name}
-        placeholder="name of spot"
+        placeholder="Name of your spot"
         onChange={(e) => setSpotName(e.target.value)}
       ></input>
       <h2>Set a base price for your spot</h2>
+      <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
       <div>{errors.price}</div>$
       <input
         type="text"
@@ -175,36 +176,36 @@ const SpotForm = ({ spot, formType }) => {
         onChange={(e) => setPrice(e.target.value)}
       ></input>
       <h2>Liven up your spot with photos</h2>
-      <p>Submit a link to atleast one photo to publish your spot</p>
+      <p>Submit a link to at least one photo to publish your spot.</p>
       {/* <div>{errors.}</div> */}
       <input
         type="text"
         value={url1}
-        placeholder="Preview Image url"
+        placeholder="Preview Image URL"
         onChange={(e) => setUrl1(e.target.value)}
       ></input>
       <input
         type="text"
         value={url2}
-        placeholder="Image url"
+        placeholder="Image URL"
         onChange={(e) => setUrl2(e.target.value)}
       ></input>
       <input
         type="text"
         value={url3}
-        placeholder="Image url"
+        placeholder="Image URL"
         onChange={(e) => setUrl3(e.target.value)}
       ></input>
       <input
         type="text"
         value={url4}
-        placeholder="Image url"
+        placeholder="Image URL"
         onChange={(e) => setUrl4(e.target.value)}
       ></input>
       <input
         type="text"
         value={url5}
-        placeholder="Image url"
+        placeholder="Image URL"
         onChange={(e) => setUrl5(e.target.value)}
       ></input>
       <input type="submit" value={formType}></input>

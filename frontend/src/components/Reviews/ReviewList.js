@@ -27,6 +27,7 @@ const ReviewList = ({ spotId }) => {
 //sort reviews so newewst is on top
   reviewsArray.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
 
+  
   if (!reviewsArray.length) return null;
 
   return (
@@ -34,7 +35,7 @@ const ReviewList = ({ spotId }) => {
       {reviewsArray.map((review) => (
         <ul key={review.id}>
           <li>Review users name: {review.User.firstName}</li>
-          <li>Created at {review.createdAt}</li>
+          <li>Created at: {new Date(review.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}</li>
           <li>Review contents : {review.review}</li>
           <li>Star rating {review?.stars}</li>
           {/* if session user id matches the review id then we show delete modal button and if there is a user*/}
