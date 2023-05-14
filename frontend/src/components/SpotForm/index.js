@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addSpotThunk, editSpotThunk } from "../../store/spots";
+import { flushSync } from "react-dom";
 
 const SpotForm = ({ spot, formType }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const SpotForm = ({ spot, formType }) => {
   const [description, setDescription] = useState(spot?.description);
   const [name, setSpotName] = useState(spot?.name);
   const [price, setPrice] = useState(spot?.price);
-  const [imageUrl, setImageUrl] = useState(spot?.imageUrl);
+  // const [imageUrl, setImageUrl] = useState(spot?.imageUrl);
   const [lat, setLat] = useState(1);
   const [lng, setLng] = useState(1);
   const [url1, setUrl1] = useState("");
@@ -65,20 +66,18 @@ const SpotForm = ({ spot, formType }) => {
       }
     }
   };
-  // const urlChecker =(url)=> {
-  //     const imageType = ['.jpg', '.png']
-  //     const urlCopy=url.substring(url.lastIndexOf('.'))
-  //     return imageType.includes(urlCopy)
-  // }
-  // const hnadleImageChange=e=>{
-  //     const url = e.target.value
-  //     if(!urlChecker(url)){
-  //         setErrors({imageUrl:"image must end with .jpg or .png"})
-  //     }else{
-  //         setErrors({})
-  //     }
-  //     setImageUrl(url)
-  // }
+ //check if ends in jpg jpeg png. use as ternary to return error
+ const urls=[url1,url2,url3,url4,url5]
+  const urlChecker=(url)=>{
+    const endings=['.jpg','.jpeg', '.png']
+    for (let i=0; i<endings.length;i++){
+      if(url.endsWith(endings[i])){
+        return true
+      }
+    }
+    return false
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>{formType}</h2>
@@ -86,7 +85,7 @@ const SpotForm = ({ spot, formType }) => {
       <h3>Where's your place located?</h3>
       <p>Guests will only get your exact adress once they booked a reservation.</p>
       <p className="error-text">{errors.country}</p>
-      <label>
+      <label className="input-label">
         Country
         <input
           type="text"
@@ -95,7 +94,7 @@ const SpotForm = ({ spot, formType }) => {
           onChange={(e) => setCountry(e.target.value)}
         ></input>
       </label>
-      <label>
+      <label className="input-label">
         <div className="error-text">{errors.address}</div>
         Street Address
         <input
@@ -106,7 +105,7 @@ const SpotForm = ({ spot, formType }) => {
         ></input>
       </label>
       <div>
-        <label>
+        <label className="input-label">
           <div className="error-text">{errors.city}</div>
           City
           <input
@@ -117,7 +116,7 @@ const SpotForm = ({ spot, formType }) => {
           ></input>
         </label>
         ,
-        <label>
+        <label className="input-label">
           <div className="error-text">{errors.state}</div>
           State
           <input
@@ -150,7 +149,7 @@ const SpotForm = ({ spot, formType }) => {
         </label>
       </div> */}
       <h2>Describe your place to guests</h2>
-      <p>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
+      <label className="input-label">Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</label>
       <div className="error-text">{errors.description}</div>
       <textarea
         type="text"
@@ -159,7 +158,7 @@ const SpotForm = ({ spot, formType }) => {
         onChange={(e) => setDescription(e.target.value)}
       ></textarea>
       <h2>{formType} Title </h2>
-      <p>Catch guest's attention with a spot title that highlights what makes your place special.</p>
+      <label className="input-label">Catch guest's attention with a spot title that highlights what makes your place special.</label>
       <div className="error-text">{errors.name}</div>
       <input
         type="text"
@@ -168,7 +167,7 @@ const SpotForm = ({ spot, formType }) => {
         onChange={(e) => setSpotName(e.target.value)}
       ></input>
       <h2>Set a base price for your spot</h2>
-      <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+      <label className="input-label">Competitive pricing can help your listing stand out and rank higher in search results.</label>
       <div className="error-text">{errors.price}</div>$
       <input
         type="text"
@@ -180,14 +179,17 @@ const SpotForm = ({ spot, formType }) => {
     {formType==="Create a New Spot" &&(
       <>
       <h2>Liven up your spot with photos</h2>
-      <p>Submit a link to at least one photo to publish your spot.</p>
-      {/* <div className="error-text">{errors.}</div> */}
+      <label className="input-label">Submit a link to at least one photo to publish your spot.</label>
+      {!url1 &&(<div className="error-text">Preview image is required.</div>)}
       <input
       type="text"
       value={url1}
       placeholder="Preview Image URL"
       onChange={(e) => setUrl1(e.target.value)}
       ></input>
+      {!url1||!url2||!url3||!url4||!url5 && !urlChecker(url1) && (
+      <div className="error-text">Image URL must end in .png, .jpg, or .jpeg</div>
+    )}
       <input
       type="text"
       value={url2}

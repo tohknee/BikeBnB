@@ -32,6 +32,7 @@ const ReviewList = ({ spotId }) => {
 
   return (
     <div>
+      {console.log("reeeeview array",reviewsArray)}
       {reviewsArray.map((review) => (
         <ul key={review.id}>
           <li>Review users name: {review.User.firstName}</li>

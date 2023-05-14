@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { deleteSpotThunk, getSpotThunk } from "../../store/spots";
-import { Link } from "react-router-dom";
 import ReviewList from "../Reviews/ReviewList";
 import CreateReviewForm from "../Reviews/CreateReviewForm";
-import OpenModalButton from "../OpenModalButton";
+import "./index.css"
 
 const SpotIndexItem = () => {
   const dispatch = useDispatch();
@@ -34,21 +33,39 @@ const SpotIndexItem = () => {
     alert("Feature coming soon")
   }
   return (
-    <div>
+    <div className="container">
       <h2>{spot.name}</h2>
       <p>
         Location:{spot.city},{spot.state},{spot.country}
       </p>
       <div className="image-div">
-        {spot.SpotImages.map((image) => (
-          <img key={image.id} src={image.url}></img>
-        ))}
+        <img className="prev-img" key={spot.SpotImages[0].id} src={spot.SpotImages[0].url}/>
+        <div className="other-imgs">
+
+        {spot.SpotImages.slice(1).map((image) => (
+          <img className="not-prev-img" key={image.id} src={image.url}></img>
+          ))}
+          </div>
       </div>
-      {console.log("checccking spot image", spot.SpotImages)}
-      <div>
+      <div className="spot-details">
+     
+      <div className="host">
         Hosted by :{spot.Owner.firstName},{spot.Owner.lastName}
+      <p className="description">Paragraph: {spot.description}</p>
       </div>
-      <p>Paragraph: {spot.description}</p>
+      <div className="callout">
+        <div className="top-text">
+        <p>${spot.price} night</p>
+        <div>
+
+        <i className="fa fa-star"></i>
+        {spot.avgStarRating ? spot.avgStarRating.toFixed(1) : "New"}
+        </div>
+        </div>
+        <button onClick={()=>bookingAlert()}>Reserve</button>
+      </div>
+      </div>
+      <hr className="line"></hr>
       <h2>
         <i className="fa fa-star"></i>
         {spot.avgStarRating ? spot.avgStarRating.toFixed(1) : "New"}{" "}
@@ -66,12 +83,7 @@ const SpotIndexItem = () => {
           {spot.numReviews === 0 ? <p>Be the first to write a review!</p> : ""}
         </div>
       )}
-      <div className="callout">
-        callout box div<p>${spot.price} night</p>
-        <i className="fa fa-star"></i>
-        {spot.avgStarRating ? spot.avgStarRating.toFixed(1) : "New"}
-        <button onClick={()=>bookingAlert()}>Reserve</button>
-      </div>
+     
       <ReviewList spotId={spotId} />
     </div>
   );
