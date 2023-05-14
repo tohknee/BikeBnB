@@ -8,7 +8,7 @@ const EditSpotForm = () => {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const spot = useSelector((state) => state.spots[spotId]); //normalized
-  console.log("spoot", spot); 
+   
 
   useEffect(() => {
     dispatch(getSpotThunk(spotId));

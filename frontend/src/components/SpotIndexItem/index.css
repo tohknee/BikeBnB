@@ -1,0 +1,96 @@
+
+.container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+  /* Style for the Location text */
+  p {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  
+  /* Style for the main image and other images */
+  .image-div {
+    display: flex;
+    margin-bottom: 40px;
+  }
+  
+  .prev-img {
+    max-width: 40rem;
+    margin-right: 20px;
+  }
+  
+  .other-imgs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 50%;
+    max-height: 50%;
+    padding-bottom: 0;
+  }
+  
+  .not-prev-img {
+    width: 48%;
+    margin-bottom: 20px;
+  }
+/* Style for the spot details */
+  .spot-details{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Style for the Hosted by text */
+  .host {
+    font-size: 20px;
+    margin-bottom: 16px;
+    flex-basis: 50%;
+  }
+  
+  
+  /* Style for the Callout box */
+  .callout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 5px solid  black;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 32px;
+    width: 20rem;
+  }
+  .top-text{
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+  }
+  
+  .callout p {
+    font-size: 24px;
+    margin: 0;
+    flex-basis: 50%;
+    text-align: center;
+  }
+  
+  .callout button {
+    font-size: 18px;
+    padding: 8px 16px;
+    background-color:red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px black;
+    width: 20rem;
+  }
+  
+  .callout button:hover {
+    cursor: pointer;
+    background-color: blue;
+  }
+
+  .spot-details{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  

@@ -44,6 +44,7 @@ function SignupFormModal() {
 
   return (
     <>
+    {console.log("errrrorrrrs", errors)}
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label>

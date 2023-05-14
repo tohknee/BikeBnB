@@ -16,7 +16,7 @@ const SpotIndex = () => {
   return (
     <>
       <h1>Spots List</h1>
-    {console.log("sppooooot raing",spotsArray.rating)}
+    
       {spotsArray.map((spot) => (
           <Link  to={`/spots/${spot.id}`}>
             <h2>{spot.name}</h2>

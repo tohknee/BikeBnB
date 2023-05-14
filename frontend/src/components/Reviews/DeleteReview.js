@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { deleteReviewThunk } from "../../store/reviews";
 import { useModal } from "../../context/Modal";
 import { getSpotThunk } from "../../store/spots";
-
+// import "../../index.css"
 const DeleteReview = ({ review ,spotId}) => {
   const dispatch = useDispatch();
 
@@ -10,7 +10,8 @@ const DeleteReview = ({ review ,spotId}) => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    await dispatch(deleteReviewThunk(review)).then(closeModal);
+    await dispatch(deleteReviewThunk(review))
+    .then(closeModal);
   dispatch(getSpotThunk(spotId))
     
   };
@@ -18,10 +19,10 @@ const DeleteReview = ({ review ,spotId}) => {
     <div>
       <h2>Confirm Delete</h2>
       <p>Are you sure you want to delete this review?</p>
-      <button onClick={handleDelete}>
-        Yes(Delete Review)make red
+      <button className="delete-yes" onClick={handleDelete}>
+        Yes(Delete Review)
       </button>
-      <button onClick={closeModal}>No (Keep Review)make grey</button>
+      <button onClick={closeModal} className="delete-no">No (Keep Review)</button>
     </div>
   );
 };
