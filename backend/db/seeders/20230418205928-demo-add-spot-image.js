@@ -35,6 +35,7 @@ module.exports = {
           url: "https://fastly.picsum.photos/id/261/200/200.jpg?hmac=4mNici_jSM7rVZzJL7M6G24f0axnDV3BZR-LBo5gMIg",
           preview: false,
         },
+
         {
           spotId: 2,
           url: "https://fastly.picsum.photos/id/626/200/200.jpg?hmac=k-fpo_bQAtxcljtuQzE1GTq5YEufAV5jjzW3n86c0i0",
@@ -60,6 +61,7 @@ module.exports = {
           url: "https://fastly.picsum.photos/id/834/200/200.jpg?hmac=vcoSQ7O6i2vxWANscm-9EGrw0MNqLzU3X0pQZ1o5ovI",
           preview: false,
         },
+
         {
           spotId: 3,
           url: "https://fastly.picsum.photos/id/863/200/200.jpg?hmac=b2PqP--PkLWi3zKCrto-MSpLXkrtt4kYpKbUkZa2Yjo",
@@ -84,6 +86,7 @@ module.exports = {
           url: "https://fastly.picsum.photos/id/200/200/200.jpg?hmac=mk1Tu6dXHQvpaA8RfxlDUZjbWG23krNkiB9kyYoEmO8",
           preview: false,
         },
+        
         {
           spotId: 4,
           url: "https://fastly.picsum.photos/id/830/200/200.jpg?hmac=3ce7zNUn5yg_XKy7dHgIHta7t_0vghPQnAGUSGJuBZE",

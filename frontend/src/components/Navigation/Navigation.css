@@ -27,6 +27,8 @@
     list-style: none;
     position: absolute;
     right: 0;
+    padding: 0;
+    background-color: white;
   }
 /* .drop-options{
   padding: 20px;

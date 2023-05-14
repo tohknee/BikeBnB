@@ -7,8 +7,9 @@ import OpenModalButton from "../OpenModalButton";
 const GetCurrentUserSpots = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log("state.log", state);
+
   const spotsArray = useSelector((state) => state.spots.currentUserSpots.Spots);
+  
   useEffect(() => {
     dispatch(getCurrentUserSpotThunk());
   }, [dispatch]);

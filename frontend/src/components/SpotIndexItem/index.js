@@ -38,6 +38,7 @@ const SpotIndexItem = () => {
       <p>
         Location:{spot.city},{spot.state},{spot.country}
       </p>
+      {console.log('preview imaage', spot.SpotImages)}
       <div className="image-div">
         <img className="prev-img" key={spot.SpotImages[0].id} src={spot.SpotImages[0].url}/>
         <div className="other-imgs">

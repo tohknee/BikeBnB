@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addSpotThunk, editSpotThunk } from "../../store/spots";
-import { flushSync } from "react-dom";
+import "./index.css"
 
 const SpotForm = ({ spot, formType }) => {
   const dispatch = useDispatch();
@@ -104,7 +104,7 @@ const SpotForm = ({ spot, formType }) => {
           onChange={(e) => setAddress(e.target.value)}
         ></input>
       </label>
-      <div>
+      <div className="together-div">
         <label className="input-label">
           <div className="error-text">{errors.city}</div>
           City
@@ -115,7 +115,7 @@ const SpotForm = ({ spot, formType }) => {
             onChange={(e) => setCity(e.target.value)}
           ></input>
         </label>
-        ,
+        
         <label className="input-label">
           <div className="error-text">{errors.state}</div>
           State
@@ -148,6 +148,7 @@ const SpotForm = ({ spot, formType }) => {
           ></input>
         </label>
       </div> */}
+      <hr className="line"></hr>
       <h2>Describe your place to guests</h2>
       <label className="input-label">Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</label>
       <div className="error-text">{errors.description}</div>
@@ -166,6 +167,7 @@ const SpotForm = ({ spot, formType }) => {
         placeholder="Name of your spot"
         onChange={(e) => setSpotName(e.target.value)}
       ></input>
+      <hr className="line"></hr>
       <h2>Set a base price for your spot</h2>
       <label className="input-label">Competitive pricing can help your listing stand out and rank higher in search results.</label>
       <div className="error-text">{errors.price}</div>$
@@ -175,7 +177,7 @@ const SpotForm = ({ spot, formType }) => {
         placeholder="Price per night (usd)"
         onChange={(e) => setPrice(e.target.value)}
       ></input>
-
+<hr></hr>
     {formType==="Create a New Spot" &&(
       <>
       <h2>Liven up your spot with photos</h2>
@@ -216,8 +218,10 @@ const SpotForm = ({ spot, formType }) => {
       ></input>
       </>
       )}
+      <hr></hr>
       <input type="submit" value={formType}></input>
     </form>
+    
   );
 };
 
