@@ -22,3 +22,34 @@
     display: flex;
     justify-content: left;
   }
+
+  .profile-dropdown{
+    list-style: none;
+    position: absolute;
+    right: 0;
+  }
+/* .drop-options{
+  padding: 20px;
+} */
+   .nav-link{
+text-decoration: none;
+color: black;
+  }
+  .button-border{
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+  }
+  .nav-button{
+    display: flex;
+    align-items: center;
+    border: solid black 2px;
+    border-radius: 0%;
+    color: blue;
+    background-color: white;
+  }
+
+  .profile-dropdown{
+    border: solid 4px black;
+    border-radius: 11px;
+  } 

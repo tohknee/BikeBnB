@@ -1,0 +1,13 @@
+.all-spots-container {
+    border: solid blue;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+  
+  .spot-tile {
+    /* calcuclate widht of each item equal to 25% of the container minus 75% of the gap */
+    width: calc(25% - (1rem * 0.75));
+    margin-bottom: 20px;
+  }
