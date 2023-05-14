@@ -49,6 +49,25 @@ module.exports = {
         review: "user 3 review not good spot",
         stars: 1,
       },
+      {
+        userId: 4,
+        spotId: 1,
+        review: "I recently visited this place and I must say, the experience was amazing! The staff was super friendly and the facilities were top-notch. Definitely recommend this to anyone looking to have a great time!",
+        stars: 1,
+      },
+      {
+        userId: 4,
+        spotId: 2,
+        review: "I had a blast at this place with my friends. The atmosphere was great and the activities were so much fun. The only downside was the long wait times for certain things, but it was worth it in the end.",
+        stars: 1,
+      },
+      {
+        userId: 4,
+        spotId: 3,
+        review: "I wasn't sure what to expect when I came here, but I was pleasantly surprised. The staff was very accommodating and the equipment was well-maintained. Will definitely be coming back soon!",
+        stars: 1,
+      },
+    
     ]);
   },
 

@@ -308,7 +308,9 @@ const validatePost = [
     .withMessage("Provide name"),
   check("description")
     .exists({ checkFalsy: true })
-    .withMessage("Provide description"),
+    .withMessage("Provide description")
+    .isLength({min:30})
+    .withMessage("Description needs a minimum of 30 characters"),
   check("price").notEmpty().isDecimal().withMessage("Provide price"),
   handleValidationErrors,
 ];
