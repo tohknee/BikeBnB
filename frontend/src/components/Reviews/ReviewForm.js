@@ -62,7 +62,7 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
       </label>
       <p className="errors">{errors.errors}</p>
     
-      <input  className="review-submit" type="submit" disabled={review.length<10 || stars===0} value="Submit Your Review" />
+      <input  className="review-submit" type="submit" disabled={review.length<10 || stars===0} value="          Submit Your Review" />
     </form>
   );
 };

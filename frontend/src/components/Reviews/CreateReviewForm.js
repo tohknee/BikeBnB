@@ -1,5 +1,6 @@
 import ReviewForm from "./ReviewForm";
 import OpenModalButton from "../OpenModalButton";
+import './ReviewRating.css'
 const CreateReviewForm = ({ spotId }) => {
   const reviews = {
     review: "",
@@ -7,16 +8,19 @@ const CreateReviewForm = ({ spotId }) => {
   };
 
   return (
-    <OpenModalButton
-      buttonText={"Submit your review"}
+    <div className="containers">
+
+    <OpenModalButton 
+      buttonText={"        Submit your review"}
       modalComponent={
         <ReviewForm
-          reviews={reviews}
-          formType="Submit Review"
-          spotId={spotId}
+        reviews={reviews}
+        formType="Submit Review"
+        spotId={spotId}
         ></ReviewForm>
       }
-    ></OpenModalButton>
+      ></OpenModalButton>
+      </div>
   );
 };
 export default CreateReviewForm;
