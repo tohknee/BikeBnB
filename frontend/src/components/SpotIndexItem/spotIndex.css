@@ -2,6 +2,9 @@
 .container {
     padding-left: 2rem;
     padding-right: 2rem;
+    
+    margin: 0 auto;
+  
 }
   /* Style for the Location text */
   p {
@@ -27,11 +30,12 @@
     max-width: 50%;
     max-height: 50%;
     padding-bottom: 0;
+    gap:12px ;
   }
   
   .not-prev-img {
     width: 48%;
-    margin-bottom: 20px;
+  
   }
 /* Style for the spot details */
   .spot-details{
@@ -45,8 +49,17 @@
     margin-bottom: 16px;
     flex-basis: 50%;
   }
+  ul{
+    padding: 0;
+  }
   
-  
+  li {
+    list-style: none;
+  }
+  .single-review{
+    margin-right: auto;
+    margin-left: 0;
+  }
   /* Style for the Callout box */
   .callout {
     display: flex;
@@ -58,6 +71,7 @@
     padding: 16px;
     margin-bottom: 32px;
     width: 20rem;
+    height: 5rem;
   }
   .top-text{
     display: flex;

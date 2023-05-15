@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { deleteSpotThunk, getSpotThunk } from "../../store/spots";
 import ReviewList from "../Reviews/ReviewList";
 import CreateReviewForm from "../Reviews/CreateReviewForm";
-import "./index.css"
+import "./spotIndex.css"
 
 const SpotIndexItem = () => {
   const dispatch = useDispatch();
@@ -38,6 +38,7 @@ const SpotIndexItem = () => {
       <p>
         Location:{spot.city},{spot.state},{spot.country}
       </p>
+      {console.log('preview imaage', spot.SpotImages)}
       <div className="image-div">
         <img className="prev-img" key={spot.SpotImages[0].id} src={spot.SpotImages[0].url}/>
         <div className="other-imgs">
@@ -56,7 +57,7 @@ const SpotIndexItem = () => {
       <div className="callout">
         <div className="top-text">
         <p>${spot.price} night</p>
-        <div>
+        <div >
 
         <i className="fa fa-star"></i>
         {spot.avgStarRating ? spot.avgStarRating.toFixed(1) : "New"}
@@ -66,7 +67,7 @@ const SpotIndexItem = () => {
       </div>
       </div>
       <hr className="line"></hr>
-      <h2>
+      <div className="single-review">
         <i className="fa fa-star"></i>
         {spot.avgStarRating ? spot.avgStarRating.toFixed(1) : "New"}{" "}
         {spot.numReviews ? "·" : ""}{" "}
@@ -75,7 +76,7 @@ const SpotIndexItem = () => {
           : spot.numReviews > 1
           ? `${spot.numReviews} Reviews`
           : ""}
-      </h2>
+      </div>
       {/* if session user id does not mathc spot id then we allow to create a review */}
       {userObj?.id !== spot.ownerId && userObj && !reviewOwnerMatcher && (
         <div>
@@ -84,7 +85,7 @@ const SpotIndexItem = () => {
         </div>
       )}
      
-      <ReviewList spotId={spotId} />
+      <ReviewList className="review-list" spotId={spotId} />
     </div>
   );
 };

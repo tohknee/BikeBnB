@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+}
+h1{
+  text-align: center;
+}
+
+
+.login-input{
+    width: 15rem
+}
+.login-button{
+    width: 15rem;
+}
+
+.login-error{
+    color: red;
+}

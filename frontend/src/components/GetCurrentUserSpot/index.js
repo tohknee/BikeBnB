@@ -4,11 +4,14 @@ import { getCurrentUserSpotThunk } from "../../store/spots";
 import { Link } from "react-router-dom";
 import DeleteSpot from "../DeleteSpot";
 import OpenModalButton from "../OpenModalButton";
+import "./new.css"
+
 const GetCurrentUserSpots = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log("state.log", state);
+
   const spotsArray = useSelector((state) => state.spots.currentUserSpots.Spots);
+  
   useEffect(() => {
     dispatch(getCurrentUserSpotThunk());
   }, [dispatch]);
@@ -18,25 +21,33 @@ const GetCurrentUserSpots = () => {
 
   return (
     <>
-      <h2>Manage Spots</h2>
-     <button><Link to={'/spots/new'}>Create new Spot</Link></button>
+    <h2>Manage Spots</h2>
+     <button className="create-spot-button"><Link className="link-text" to={'/spots/new'}>Create new Spot</Link></button>
+    <div className="make-gap"></div>
+    <div className="all-spots-container">
       {spotsArray.map((spot) => (
-        <div key={spot.id}>
-          <Link to={`/spots/${spot.id}`}>
-          <Link to={`/spots/${spot.id}`}> <h2>{spot.name}</h2></Link>
-         <img src={spot.previewImage}></img>
-          <i className="fa fa-star">##{spot.city},{spot.state}</i>
-          <div></div>
-          <div>{spot.avgRating}</div>
+        <div className='spot-tile' key={spot.id}>
+          <Link to={`/spots/${spot.id}`} >
+         <img className="tile-image" src={spot.previewImage}></img>
+          <div>{spot.city},{spot.state}</div>
+          <div className="top-line">
+            <div className="rating-div">
+          <i className="fa fa-star"></i>
+          <div>{spot.avgRating?.toFixed(1)}</div>
+            </div>
+          </div>
          </Link> 
-          <button><Link className="edit-link" to={`/spots/${spot.id}/edit`}>
+         <div className="manage-buttons">
+         <button className="edit-link"><Link  to={`/spots/${spot.id}/edit`}>
             Update
           </Link></button> 
+
           <OpenModalButton buttonText={"Delete"} modalComponent={<DeleteSpot spot={spot}></DeleteSpot>}></OpenModalButton>
-       
+       </div>
         </div>
       ))}
-    </>
+    </div>
+      </>
   );
 };
 

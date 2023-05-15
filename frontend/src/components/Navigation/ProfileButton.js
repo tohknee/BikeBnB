@@ -6,6 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
+import "./Navigation.css"
 
 //component will represent a profile button
 function ProfileButton({ user }) {
@@ -47,36 +48,44 @@ function ProfileButton({ user }) {
 
   return (
     <>
+    <div className="pointer">
+
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
-          <>
+          <div className="drop-options">
             <li>
               Hello, {user.firstName}
             </li>
             <li>{user.email}</li>
-            <li><Link to={`/spots/current`}>Manage Spots</Link></li>
-            <li>
-              <button onClick={logout}>Log Out</button>
+            <hr></hr>
+            <li><Link to={`/spots/current`}  className="nav-link">Manage Spots</Link></li>
+            <hr></hr>
+            <li className="button-border">
+              <button className="nav-button" onClick={logout}>Log Out</button>
             </li>
-          </>
+          </div>
         ) : (
           <>
             <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
+            className="login"
+            itemText="Log In"
+            onItemClick={closeMenu}
+            modalComponent={<LoginFormModal />}
             />
+            <hr></hr>
             <OpenModalMenuItem
+              className="login"
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
-            />
+              />
           </>
         )}
       </ul>
+        </div>
     </>
   );
 }

@@ -9,3 +9,17 @@
     display: flex;
     margin-right: 4px;
   }
+
+  .review-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
+
+  .review-submit {
+    width: 60%;
+    margin: 20px;
+    border-radius: 20px;
+text-align: center;
+  }
