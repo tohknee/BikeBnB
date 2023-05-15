@@ -33,7 +33,7 @@ const GetCurrentUserSpots = () => {
           <div className="top-line">
             <div className="rating-div">
           <i className="fa fa-star"></i>
-          <div>{spot.avgRating?.toFixed(1)}</div>
+          <div>{spot.avgRating ? spot.avgRating?.toFixed(1): "New"}</div>
             </div>
           </div>
          </Link> 
