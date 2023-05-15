@@ -46,16 +46,27 @@ color: black;
     display: flex;
     align-items: center;
     border: solid black 2px;
-    border-radius: 0%;
-    color: blue;
-    background-color: white;
+    border-radius: 5px;
+    color: white;
+    background-color: gray;
   }
 
   .profile-dropdown{
     border: solid 4px black;
     border-radius: 11px;
+    margin: 10px;
+    padding: 10px;
+    
   } 
 
 .fa-user-circle{
   cursor: pointer;
+}
+.pointer :hover{
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(68, 100, 140);
 }

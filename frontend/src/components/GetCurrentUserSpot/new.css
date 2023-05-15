@@ -1,0 +1,32 @@
+.create-spot-button{
+    margin-right: 20rem;
+    background-color: white;
+    border: 10px white;
+    height: 50px;
+  }
+
+  .link-text {
+    border: solid 3px black;
+    background-color: grey;
+    color: white;
+    border-radius: 2px;
+    margin: 10px;
+    padding: 10px;
+    margin-bottom: 29px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .tile-image{
+    padding-top: 10px;
+  }
+
+  .manage-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .top-line{
+margin-top: 10px;
+margin-bottom: 10px;
+   
+  }

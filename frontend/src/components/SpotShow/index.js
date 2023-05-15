@@ -22,7 +22,6 @@ const SpotIndex = () => {
   if(!spotsArray) return null
   return (
     <>
-      <h1>Spots List</h1>
     <div className="all-spots-container" >
 
       {spotsArray.map((spot) => (

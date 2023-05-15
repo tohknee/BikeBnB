@@ -43,10 +43,12 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="review-form" onSubmit={handleSubmit}>
       <h2>How was your stay?</h2>
       <label>
         <textarea
+        rows={5}
+        cols={30}
           value={review}
           type="text"
           placeholder="Leave your review here..."
@@ -60,7 +62,7 @@ const ReviewForm = ({ spotId, reviews, formType }) => {
       </label>
       <p className="errors">{errors.errors}</p>
     
-      <input type="submit" disabled={review.length<10 || stars===0} value="Submit Your Review" />
+      <input  className="review-submit" type="submit" disabled={review.length<10 || stars===0} value="Submit Your Review" />
     </form>
   );
 };
