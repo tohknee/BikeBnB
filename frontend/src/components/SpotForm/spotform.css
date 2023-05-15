@@ -7,6 +7,9 @@
   height: 100%;
   
 }
+input{
+  background-color: rgb(215, 215, 254);
+}
 
 .submit-form  {
     display: flex;
@@ -15,10 +18,12 @@
     justify-content: center;
     text-align: center;
     width: 60%;
-    background-color:rgb(220, 216, 216) ;
+   
   }
   
-
+textarea{
+  background-color: rgb(215, 215, 254);
+}
 .input-box{
   width: 400px;
 
@@ -61,3 +66,18 @@
   .url-input{
     max-width: 60%;
   }
+
+  .spot-form-submit{
+    max-width: 150px;
+    padding-left: 25px;
+    background-color: red;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 1);
+  }
+  
+  .dollar{
+display: flex;
+align-items: center; 
+gap: 10px; }

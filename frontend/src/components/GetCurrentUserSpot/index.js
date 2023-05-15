@@ -29,10 +29,12 @@ const GetCurrentUserSpots = () => {
         <div className='spot-tile' key={spot.id}>
           <Link to={`/spots/${spot.id}`} >
          <img className="tile-image" src={spot.previewImage}></img>
+          <div>{spot.city},{spot.state}</div>
           <div className="top-line">
-          <i className="fa fa-star">##{spot.city},{spot.state}</i>
-          <div>{spot.avgRating}</div>
-
+            <div className="rating-div">
+          <i className="fa fa-star"></i>
+          <div>{spot.avgRating?.toFixed(1)}</div>
+            </div>
           </div>
          </Link> 
          <div className="manage-buttons">

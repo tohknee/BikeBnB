@@ -187,14 +187,19 @@ const SpotForm = ({ spot, formType }) => {
       <hr className="line"></hr>
       <h2>Set a base price for your spot</h2>
       <label className="input-label">Competitive pricing can help your listing stand out and rank higher in search results.</label>
-      <div className="error-text">{errors.price}</div>$
+      <div className="error-text">{errors.price}</div>
+      <div className="dollar" >
+      <div>
+        $
+        </div>
       <input
       className="input-box"
-        type="text"
-        value={price}
-        placeholder="Price per night (usd)"
-        onChange={(e) => setPrice(e.target.value)}
-        ></input>
+      type="text"
+      value={price}
+      placeholder="Price per night (usd)"
+      onChange={(e) => setPrice(e.target.value)}
+      ></input>
+      </div>
 <hr></hr>
     {formType==="Create a New Spot" &&(
       <>
@@ -202,7 +207,7 @@ const SpotForm = ({ spot, formType }) => {
       <label className="input-label">Submit a link to at least one photo to publish your spot.</label>
       {!url1 &&(<div className="error-text">Preview image is required.</div>)}
       <div>
-        {imageCheck &&<p>erRRORS</p>}
+      
       </div>
       <input
        className="url-input"
@@ -246,7 +251,7 @@ const SpotForm = ({ spot, formType }) => {
       </>
       )}
       <hr></hr>
-      <input type="submit" value={formType}></input>
+      <input className="spot-form-submit" type="submit" value={formType}></input>
     </form>
     
       </div>
