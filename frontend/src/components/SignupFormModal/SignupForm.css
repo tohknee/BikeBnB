@@ -1,0 +1,21 @@
+p{
+    color: red;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+gap: 10px;
+margin: 0;
+padding: 0;
+}
+
+input {
+    display: flex;
+   
+    width: 100%;
+    padding: 0;
+    border: 1px solid gray;
+    height: 20px;
+    margin: 0;
+  }

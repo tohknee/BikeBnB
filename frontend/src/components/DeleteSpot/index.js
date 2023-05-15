@@ -15,7 +15,7 @@ const DeleteSpot = ({ spot }) => {
     dispatch(getCurrentUserSpotThunk());
     closeModal()
   };
-
+console.log('dooooes this work?',spot)
   return (
     <div>
       <h2>Confirm Delete</h2>

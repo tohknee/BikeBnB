@@ -13,6 +13,12 @@ const SpotIndex = () => {
     dispatch(getAllSpotsThunk());
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   // This effect will re-run whenever spotsArray changes
+  //   if (!spotsArray) return;
+  //   console.log("spotsArray updated:", spotsArray);
+  // }, [spotsArray]);
+  
   if(!spotsArray) return null
   return (
     <>

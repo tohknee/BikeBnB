@@ -2,6 +2,9 @@
 .container {
     padding-left: 2rem;
     padding-right: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  
 }
   /* Style for the Location text */
   p {
@@ -58,6 +61,7 @@
     padding: 16px;
     margin-bottom: 32px;
     width: 20rem;
+    height: 5rem;
   }
   .top-text{
     display: flex;
