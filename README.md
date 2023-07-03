@@ -7,7 +7,8 @@
    * Logged in Users can create new spot (CREATE)
    * logged in users can edit their spots(EDIT)
    * Logged in users can remove spots(DELETE)
-4. Reviews
+4. Reviews![9B777ECA-68E4-4EC9-A5C6-57DF435EDA95](https://github.com/tohknee/BikeBnB/assets/13267560/733ab696-5071-4541-947a-e10b5854f153)
+
    * Logged in users can view and manage their reviews (READ)
    * Logged in users can create reviews (CREATE)
    * Logged in users can edit their reviews made (UPDATE)
