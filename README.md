@@ -13,6 +13,3 @@
    * Logged in users can create reviews (CREATE)
    * Logged in users can edit their reviews made (UPDATE)
    * Logged in users can delete reviews(DELETE)
-5. Billing
-   * Users can add credit or debit carad information to have on file.
-   * They can create and delete cards.
